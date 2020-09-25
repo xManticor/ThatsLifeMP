@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.event.ActionEvent;
+
 public class OrangeSpace extends Space {
 
     public OrangeSpace(String type) {
@@ -7,8 +9,8 @@ public class OrangeSpace extends Space {
         super(type);
     }
 
-    public Card takeActionCard(Deck actionDeck) {
-        return actionDeck.drawCard();
+    public ActionCard takeActionCard(Deck actionDeck) {
+        return (ActionCard) actionDeck.drawCard();
     }
 
     @Override

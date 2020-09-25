@@ -43,7 +43,6 @@ public class Player {
    */
 
   public int getCash() {
-
     return this.cash;
   }
 
@@ -54,7 +53,6 @@ public class Player {
    */
 
   public String getCareer() {
-
     return career.getName();
   }
 
@@ -102,6 +100,14 @@ public class Player {
     return this.career.maxRaise;
   }
 
+  public int getChildren() {
+    return children;
+  }
+
+  public int getLoan() {
+    return loan;
+  }
+
   public HouseCard getHouse() {
     return this.house;
   }
@@ -117,8 +123,15 @@ public class Player {
    */
 
   public void addCash(int amount) {
-
     this.cash += amount;
+  }
+
+  public void setPath(Path path) {
+    this.path = path;
+  }
+
+  public void addChild(int child){
+    children += child;
   }
 
   /**
@@ -129,7 +142,6 @@ public class Player {
    */
 
   public void addSalary(int amount) {
-
     this.salary.salary += amount;
   }
 
@@ -141,7 +153,6 @@ public class Player {
    */
 
   public void addTaxDue(int amount) {
-
     this.salary.taxDue += amount;
   }
 
@@ -150,7 +161,6 @@ public class Player {
    */
 
   public void addRaiseCounter() {
-
     this.raiseCounter++;
   }
 
@@ -177,7 +187,6 @@ public class Player {
    */
 
   public void removeCash(int amount) {
-
     this.cash -= amount;
   }
 

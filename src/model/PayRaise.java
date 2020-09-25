@@ -7,8 +7,11 @@ public class PayRaise extends GreenSpace {
     }
 
     public void raiseSalary(Player player) {
-        if (player.getRaiseCounter() == player.getMaxRaise())
+        if (player.getRaiseCounter() != player.getMaxRaise()){
             player.addSalary(generateRandom(50000, 100000));
+            player.addRaiseCounter();
+        }
+
         player.addTaxDue(2000);
     }
 

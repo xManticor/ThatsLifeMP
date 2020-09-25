@@ -16,19 +16,31 @@ public class Game {
     Deck salaryDeck = new Deck("Salary Deck");
     Deck houseDeck = new Deck("House Deck");
 
+
+
     public Game(int numPlayers) {
         this.numPlayers = numPlayers;
         this.players = new Player[numPlayers];
         this.retired = new Player[numPlayers];
 
         // Generates players
-        System.out.println("CHECKER HERE >>>>>> " + generateRandom(5000, 10000)); // checker
         for (int i = 0; i < numPlayers; i++) {
             players[i] = new Player();
         }
+        generateActionDeck();
+        generateBlueDeck();
+        generateCareerDeck();
+        generateHouseDeck();
+        generateSalaryDeck();
+
     }
 
-    public Deck generateActionDeck() {
+    public void generatePath(){
+
+        for(int i = 0; i < Path.length; )
+    }
+
+    public void generateActionDeck() {
 
         for (int i = 0; i < 20; i++)
             actionDeck.addCard(new CollectFromBank("Collect From Bank", generateRandom(1000, 35000)));
@@ -44,10 +56,9 @@ public class Game {
             actionDeck.addCard(new PayToAll("Pay To All", generateRandom(1000, 13500)));
 
         Collections.shuffle(actionDeck.getDeck());
-        return actionDeck;
     }
 
-    public Deck generateBlueDeck() {
+    public void generateBlueDeck() {
 
         blueDeck.addCard(new Lawsuit("Lawyer"));
         blueDeck.addCard(new SalaryTaxDue("Accountant"));
@@ -58,10 +69,9 @@ public class Game {
         blueDeck.addCard(new F1Race("Racecar Driver"));
 
         Collections.shuffle(blueDeck.getDeck());
-        return blueDeck;
     }
 
-    public Deck generateCareerDeck() {
+    public void generateCareerDeck() {
         careerDeck.addCard(new CareerCard("Lawyer", generateRandom(5, 8), true));
         careerDeck.addCard(new CareerCard("Accountant", generateRandom(4, 7), true));
         careerDeck.addCard(new CareerCard("Computer Consultant", generateRandom(3, 7), true));
@@ -71,27 +81,22 @@ public class Game {
         careerDeck.addCard(new CareerCard("Athlete", generateRandom(1, 6), false));
 
         Collections.shuffle(careerDeck.getDeck());
-        return careerDeck;
     }
 
-    public Deck generateSalaryDeck() {
+    public void generateSalaryDeck() {
 
         for (int i = 0; i < 10; i++)
             salaryDeck.addCard(new SalaryCard("Salary", generateRandom(1, 10) * 10000, generateRandom(1, 10) * 1000));
 
         Collections.shuffle(salaryDeck.getDeck());
-        return salaryDeck;
     }
 
-    public Deck generateHouseDeck() {
-
+    public void generateHouseDeck() {
         for (int i = 0; i < 3; i++) {
             houseDeck.addCard(new HouseCard("Mansion", 1000000));
             houseDeck.addCard(new HouseCard("Apartment", 500000));
             houseDeck.addCard(new HouseCard("Cabin", 200000));
         }
-
-        return houseDeck;
     }
 
     public Player[] getPlayers() {

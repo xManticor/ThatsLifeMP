@@ -7,8 +7,8 @@ public class BlueSpace extends Space {
         super(type);
     }
 
-    public Card takeBlueCard(Deck blueDeck) {
-        return blueDeck.drawCard();
+    public BlueCard takeBlueCard(Deck blueDeck) {
+        return (BlueCard) blueDeck.drawCard();
     }
 
     @Override

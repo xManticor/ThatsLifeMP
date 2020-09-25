@@ -13,7 +13,6 @@ public class Space {
         return type;
     }
 
-    @Override
     public String toString() {
         return "";
     }
