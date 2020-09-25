@@ -35,10 +35,10 @@ public class Game {
 
     }
 
-    public void generatePath(){
+    /*public void generatePath(){
 
         for(int i = 0; i < Path.length; )
-    }
+    }*/
 
     public void generateActionDeck() {
 

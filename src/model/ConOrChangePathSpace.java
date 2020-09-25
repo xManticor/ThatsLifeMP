@@ -7,7 +7,7 @@ public class ConOrChangePathSpace extends MagentaSpace {
         super(type);
     }
 
-    public void choosePath(){
+    /*public void choosePath(){
         .
 
         ..
@@ -17,5 +17,5 @@ public class ConOrChangePathSpace extends MagentaSpace {
         .
         .
 
-    }
+    }*/
 }

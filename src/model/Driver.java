@@ -19,6 +19,7 @@ public class Driver {
     int playernum = kb.nextInt();
     Game thatslife = new Game(playernum);
 
+    /*
     Deck actionDeck = thatslife.generateActionDeck();
     Deck blueDeck = thatslife.generateBlueDeck();
     Deck careerDeck = thatslife.generateCareerDeck();
@@ -42,6 +43,8 @@ public class Driver {
     // System.out.println(sc.getAmount());
     System.out.println(hc.getName());
     System.out.println(hc.getValue());
+
+*/
 
     /*
      * // Career career[0] = new CareerCard("Lawyer", 8); career[1] = new
