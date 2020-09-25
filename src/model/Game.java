@@ -5,10 +5,9 @@ import java.util.*;
 
 public class Game {
 
-    private Player[] players = new Player[3];
-    private Player[] retired = new Player[3];
+    private Player[] players;
+    private Player[] retired;
     private int numPlayers;
-    private int numRetired;
     private String pName;
 
     Deck actionDeck = new Deck("Action Deck");
@@ -18,17 +17,15 @@ public class Game {
     Deck houseDeck = new Deck("House Deck");
 
     public Game(int numPlayers) {
-
         this.numPlayers = numPlayers;
+        this.players = new Player[numPlayers];
+        this.retired = new Player[numPlayers];
+
         // Generates players
         System.out.println("CHECKER HERE >>>>>> " + generateRandom(5000, 10000)); // checker
-        Scanner kb = new Scanner(System.in);
         for (int i = 0; i < numPlayers; i++) {
-            System.out.print("Enter #" + (i + 1) + " player name: ");
-            pName = kb.nextLine();
-            players[i] = new Player(pName);
+            players[i] = new Player();
         }
-        kb.close();
     }
 
     public Deck generateActionDeck() {
@@ -97,12 +94,16 @@ public class Game {
         return houseDeck;
     }
 
+    public Player[] getPlayers() {
+        return players;
+    }
+
     public int getNumPlayers() {
-        return this.numPlayers;
+        return numPlayers;
     }
 
     public int getNumRetired() {
-        return this.numRetired;
+        return retired.length;
     }
 
     /**

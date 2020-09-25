@@ -8,26 +8,15 @@ package model;
 public class Player {
   private String name;
   private int cash = 200000;
-
   private int children = 0;
-  private boolean married = false;
+  private int raiseCounter = 0;
   private SalaryCard salary;
   private CareerCard career;
   private HouseCard house;
+  private Path path;
   private int loan;
-
-  private int raiseCounter = 0;
-
-  /**
-   * This also serves as the constructor of the Player class with only 2
-   * paramaters. This assigns the given name, and cash.
-   * 
-   * @param name given name to be assigned
-   * @param cash given cash to be assigned
-   */
-  public Player(String name) {
-    this.name = name;
-  }
+  private boolean married = false;
+  private boolean retired = false;
 
   /**
    * This method basically returns/gets the name of the player.
@@ -36,8 +25,15 @@ public class Player {
    */
 
   public String getName() {
-
     return this.name;
+  }
+
+  /**
+   * Sets the name of the Player
+   * @param name
+   */
+  public void setName(String name) {
+    this.name = name;
   }
 
   /**
@@ -151,9 +147,6 @@ public class Player {
 
   /**
    * This method basically adds the counter to the player's maximum raise.
-   * 
-   *
-   * @param amount refers the amount to be added to the player's raise counter.
    */
 
   public void addRaiseCounter() {
@@ -188,4 +181,23 @@ public class Player {
     this.cash -= amount;
   }
 
+  public boolean isRetired() {
+    return retired;
+  }
+
+  public boolean isMarried() {
+    return married;
+  }
+
+  public void setMarried(boolean married) {
+    this.married = married;
+  }
+
+  public void setRetired(boolean retired) {
+    this.retired = retired;
+  }
+
+  public Path getPath() {
+    return path;
+  }
 }
