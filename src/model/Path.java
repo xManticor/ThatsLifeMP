@@ -1,17 +1,18 @@
 package model;
 
+import java.util.*;
+
 public class Path {
     private String name;
-    private Space[] spaces;
+    private ArrayList<Space> spaces;
     private int endpath;
 
-    public Path(String name, int numspaces) {
+    public Path(String name) {
         this.name = name;
-        spaces = new Space[numspaces];
-        this.endpath = numspaces;
+        spaces = new ArrayList<Space>();
     }
 
-    public Space[] getSpaces() {
+    public ArrayList<Space> getSpaces() {
         return spaces;
     }
 
@@ -19,8 +20,7 @@ public class Path {
         return name;
     }
 
-    public int getEndPath() {
-        endpath = spaces.length;
-        return endpath;
+    public void addSpace(Space space){
+        spaces.add(space);
     }
 }
