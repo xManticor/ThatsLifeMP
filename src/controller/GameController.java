@@ -26,7 +26,7 @@ public class GameController implements Initializable {
 
     private void getPlayerTurn(Player player) {
         if(player.getName() == null) {
-            // ask for name
+            Scanner
         }
 
         if(player.getPath() == null) {
