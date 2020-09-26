@@ -10,6 +10,7 @@ public class Player {
   private int cash = 200000;
   private int children = 0;
   private int raiseCounter = 0;
+  private boolean collegeDegree = false;
   private SalaryCard salary;
   private CareerCard career;
   private HouseCard house;
@@ -98,6 +99,10 @@ public class Player {
   public int getMaxRaise() { // int for now
 
     return this.career.maxRaise;
+  }
+
+  public boolean hasCollegeDegree() {
+    return collegeDegree;
   }
 
   public int getChildren() {
@@ -210,6 +215,11 @@ public class Player {
   public void setRetired(boolean retired) {
     this.retired = retired;
   }
+
+  public void setCollegeDegree(boolean collegeDegree) {
+    this.collegeDegree = collegeDegree;
+  }
+
 
   public Path getPath() {
     return path;

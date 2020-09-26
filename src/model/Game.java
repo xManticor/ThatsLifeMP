@@ -39,6 +39,11 @@ public class Game {
 
     private Path generateCollegePath() {
         Path collegePath = new Path("College Path");
+        collegePath.addSpace(new CollegeOrCareerChoiceSpace("College Career Choice"));
+        for(int i = 0; i < 5; i++)
+            collegePath.addSpace(new OrangeSpace("Orange Space"));
+        collegePath.addSpace(new JobSearchSpace("Job Search Space"));
+
         return collegePath;
     }
 
