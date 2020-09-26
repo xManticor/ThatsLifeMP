@@ -12,16 +12,19 @@ public class Game {
     private int numPlayers;
     private String pName;
 
-    Deck actionDeck = new Deck("Action Deck");
-    Deck blueDeck = new Deck("Blue Deck");
-    Deck careerDeck = new Deck("Career Deck");
-    Deck salaryDeck = new Deck("Salary Deck");
-    Deck houseDeck = new Deck("House Deck");
+    private Deck actionDeck = new Deck("Action Deck");
+    private Deck blueDeck = new Deck("Blue Deck");
+    private Deck careerDeck = new Deck("Career Deck");
+    private Deck salaryDeck = new Deck("Salary Deck");
+    private Deck houseDeck = new Deck("House Deck");
 
-    Path collegePath = generateCollegePath();
-    Path careerPath1 = generateCareerPath1();
-    Path careerPath2 = generateCareerPath2();
-    Path familyPath = generateFamilyPath();
+    private Path collegePath = generateCollegePath();
+    private Path careerPath1 = generateCareerPath1();
+    private Path careerPath2 = generateCareerPath2();
+    private Path familyPath = generateFamilyPath();
+    private Path careerPath3 = generateCareerPath3();
+    private Path familyPath2 = generateFamilyPath2();
+    private Path changeCareerPath2 = generateChangeCareerPath2();
 
     public Game(int numPlayers) {
         this.numPlayers = numPlayers;
@@ -67,8 +70,112 @@ public class Game {
             careerPath2.addSpace(new OrangeSpace("Orange Space"));
         careerPath2.addSpace(new BlueSpace("Blue Space"));
         careerPath2.addSpace(new OrangeSpace("Orange Space"));
-        careerPath2.addSpace(new Whic);
+        careerPath2.addSpace(new WhichPathSpace("Which Path?"));
         return careerPath2;
+    }
+
+    private Path generateCareerPath3() {
+        Path careerPath3 = new Path("Career Path 3");
+
+        for(int i = 0; i < 3; i++)
+            careerPath3.addSpace(new OrangeSpace("Orange Space"));
+        careerPath3.addSpace(new BlueSpace("Blue Space"));
+        careerPath3.addSpace(new JobSearchSpace("Job Search Space"));
+        careerPath3.addSpace(new OrangeSpace("Orange Space"));
+        careerPath3.addSpace(new PayDay("Pay Day"));
+        for(int i = 0; i < 3; i++)
+            careerPath3.addSpace(new OrangeSpace("Orange Space"));
+        careerPath3.addSpace(new PayRaise("Pay Raise"));
+        careerPath3.addSpace(new OrangeSpace("Orange Space"));
+        careerPath3.addSpace(new BlueSpace("Blue Space"));
+        careerPath3.addSpace(new OrangeSpace("Orange Space"));
+        careerPath3.addSpace(new PayDay("Pay Day"));
+        careerPath3.addSpace(new OrangeSpace("Orange Space"));
+        careerPath3.addSpace(new HaveTwinSpace("Have a Twin!"));
+        careerPath3.addSpace(new OrangeSpace("Orange Space"));
+        careerPath3.addSpace(new PayDay("Pay Day"));
+        careerPath3.addSpace(new OrangeSpace("Orange Space"));
+        careerPath3.addSpace(new BlueSpace("Blue Space"));
+        for(int i = 0; i < 2; i++)
+            careerPath3.addSpace(new OrangeSpace("Orange Space"));
+        careerPath3.addSpace(new PayRaise("Pay Raise"));
+        for(int i = 0; i < 3; i++)
+            careerPath3.addSpace(new OrangeSpace("Orange Space"));
+        careerPath3.addSpace(new BlueSpace("Blue Space"));
+        careerPath3.addSpace(new OrangeSpace("Orange Space"));
+        careerPath3.addSpace(new PayDay("Pay Day"));
+        for(int i = 0; i < 3; i++)
+            careerPath3.addSpace(new OrangeSpace("Orange Space"));
+        careerPath3.addSpace(new WhichPathSpace("Which Path?"));
+        return careerPath3;
+    }
+
+    private Path generateChangeCareerPath2() {
+        Path changeCareerPath2 = new Path("Change Career Path 2");
+
+        changeCareerPath2.addSpace(new Caree);
+
+        changeCareerPath2.addSpace(new OrangeSpace("Orange Space"));
+
+        changeCareerPath2.addSpace(new BlueSpace("Blue Space"));
+
+        for(int i = 0; i < 2; i++)
+            changeCareerPath2.addSpace(new OrangeSpace("Orange Space"));
+
+        changeCareerPath2.addSpace(new PayRaise("Pay Raise"));
+
+        changeCareerPath2.addSpace(new OrangeSpace("Orange Space"));
+
+        changeCareerPath2.addSpace(new PayDay("Pay Day"));
+
+        changeCareerPath2.addSpace(new BlueSpace("Blue Space"));
+
+        changeCareerPath2.addSpace(new OrangeSpace("Orange Space"));
+
+        return changeCareerPath2;
+
+    }
+
+    private Path generateFamilyPath2() {
+        Path familyPath2 = new Path("Family Path 2");
+
+        familyPath2.addSpace(new GetMarriedSpace("Get Married"));
+
+        for(int i = 0; i < 2; i++)
+            familyPath2.addSpace(new OrangeSpace("Orange Space"));
+
+        familyPath2.addSpace(new BlueSpace("Blue Space"));
+
+        familyPath2.addSpace(new BuyHouseSpace("Buy A House"));
+
+        for(int i = 0; i < 3; i++)
+            familyPath2.addSpace(new OrangeSpace("Orange Space"));
+
+        familyPath2.addSpace(new HaveBabySpace("Have A Baby"));
+
+        familyPath2.addSpace(new OrangeSpace("Orange Space"));
+
+        familyPath2.addSpace(new BlueSpace("Blue Space"));
+
+        for(int i = 0; i < 3; i++)
+            familyPath2.addSpace(new OrangeSpace("Orange Space"));
+
+        return familyPath2;
+    }
+
+    private Path careerPath4 = generateCareerPath4(); // variablue, put on top
+
+    private Path generateCareerPath4(){
+
+        Path careerPath4 = new Path("Career Path 4");
+
+        for(int i = 0; i < 2; i++)
+            careerPath4.addSpace(new OrangeSpace("Orange Space"));
+
+        careerPath4.addSpace(new PayDay("Pay Day"));
+
+        for(int i = 0; i < 2; i++)
+            careerPath4.addSpace(new OrangeSpace("Orange Space"));
     }
 
     private Path generateFamilyPath() {

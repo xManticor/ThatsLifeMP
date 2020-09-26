@@ -24,6 +24,14 @@ public class Deck {
     return name;
   }
 
+  public void displayTopCard(){
+    System.out.println(cards.get(0).getName());
+  }
+  public void display2TopCards(){
+    System.out.println(cards.get(0).getName());
+    System.out.println(cards.get(1).getName());
+  }
+
   public Card drawCard() {
     Card tempcard;
     tempcard = cards.get(0);
