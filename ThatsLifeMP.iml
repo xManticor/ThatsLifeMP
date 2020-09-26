@@ -8,8 +8,8 @@
     <orderEntry type="jdk" jdkName="14" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="lib" level="project" />
-    <orderEntry type="library" name="lib1" level="project" />
+    <orderEntry type="library" exported="" name="lib1" level="project" />
     <orderEntry type="library" exported="" name="kyle" level="project" />
-    <orderEntry type="library" name="chris" level="project" />
+    <orderEntry type="library" exported="" name="chris" level="project" />
   </component>
 </module>
