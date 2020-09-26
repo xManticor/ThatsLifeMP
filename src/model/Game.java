@@ -21,7 +21,7 @@ public class Game {
     private Path collegePath = generateCollegePath();
     private Path careerPath1 = generateCareerPath1();
     private Path careerPath2 = generateCareerPath2();
-    private Path familyPath = generateFamilyPath();
+    private Path familyPath1 = generateFamilyPath1();
     private Path careerPath3 = generateCareerPath3();
     private Path familyPath2 = generateFamilyPath2();
     private Path changeCareerPath2 = generateChangeCareerPath2();
@@ -158,9 +158,9 @@ public class Game {
         return careerPath4;
     }
 
-    private Path generateFamilyPath() {
+    private Path generateFamilyPath1() {
 
-        Path familyPath = new Path("Family Path");
+        Path familyPath = new Path("Family Path 1");
 
         familyPath.addSpace(new GetMarriedSpace("Get Married Space"));
         for(int i = 0; i < 2; i++)

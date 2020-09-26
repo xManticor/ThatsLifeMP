@@ -2,9 +2,9 @@ package model;
 
 public class CareerChoice extends MagentaSpace
 {
-    public CareerChoice(String name)
+    public CareerChoice(String type)
     {
-        super(name);
+        super(type);
     }
 
     public void displayCareerCard(Deck careerDeck)
