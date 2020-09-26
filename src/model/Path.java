@@ -8,6 +8,7 @@ public class Path {
     public Path(String name, int numspaces) {
         this.name = name;
         spaces = new Space[numspaces];
+        this.endpath = numspaces;
     }
 
     public Space[] getSpaces() {

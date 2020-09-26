@@ -6,6 +6,8 @@ public class CollegeOrCareerChoiceSpace extends MagentaSpace {
         super(type);
     }
 
+    
+
     public CareerCard selectCareerCard(Deck careerDeck){
         return (CareerCard) careerDeck.drawCard();
     }

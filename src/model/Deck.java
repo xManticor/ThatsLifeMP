@@ -31,6 +31,13 @@ public class Deck {
     return tempcard;
   }
 
+  public Card draw2ndCard(){
+    Card temp2card;
+    temp2card = cards.get(1);
+    cards.remove(1);
+    return temp2card;
+  }
+
   public String toString() {
     return "";
   }

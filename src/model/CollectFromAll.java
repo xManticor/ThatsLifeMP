@@ -13,6 +13,10 @@ public class CollectFromAll extends ActionCard {
         for (int i = 0; i < payers.length; i++) {
             if (receiver.getName() != payers[i].getName()) {
                 numPayers++;
+                while(amount > payers[i].getCash()){
+                    payers[i].addLoan();
+                    payers[i].addCash(20000);
+                }
                 payers[i].removeCash(amount);
             }
         }

@@ -16,6 +16,9 @@ public class Game {
     Deck salaryDeck = new Deck("Salary Deck");
     Deck houseDeck = new Deck("House Deck");
 
+    Path collegePath = new Path("College Path", 7);
+    Path careerPath1 = new Path("Career Path 1", 2);
+    Path careerPath2 = new Path("Career Path 2", 11);
 
 
     public Game(int numPlayers) {
@@ -33,12 +36,19 @@ public class Game {
         generateHouseDeck();
         generateSalaryDeck();
 
+
     }
 
     /*public void generatePath(){
 
         for(int i = 0; i < Path.length; )
     }*/
+
+
+    public void display2TopCareer(){
+        System.out.println(careerDeck.getDeck().get(0).getName() +","+ careerDeck.getDeck().get(0).getDescription());
+        System.out.println(careerDeck.getDeck().get(1).getName() +","+ careerDeck.getDeck().get(1).getDescription());
+    }
 
     public void generateActionDeck() {
 

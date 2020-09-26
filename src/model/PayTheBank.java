@@ -7,6 +7,10 @@ public class PayTheBank extends ActionCard {
     }
 
     public void action(int amount, Player target) {
+        while(target.getCash() < amount){
+            target.addLoan();
+            target.addCash(20000);
+        }
         target.removeCash(amount);
     }
 

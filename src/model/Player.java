@@ -14,7 +14,7 @@ public class Player {
   private CareerCard career;
   private HouseCard house;
   private Path path;
-  private int loan;
+  private int loan = 0;
   private boolean married = false;
   private boolean retired = false;
 
@@ -156,12 +156,17 @@ public class Player {
     this.salary.taxDue += amount;
   }
 
+
   /**
    * This method basically adds the counter to the player's maximum raise.
    */
 
   public void addRaiseCounter() {
     this.raiseCounter++;
+  }
+
+  public void addLoan(){
+    this.loan += 25000;
   }
 
   /**

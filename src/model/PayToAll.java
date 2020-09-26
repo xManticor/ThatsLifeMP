@@ -14,6 +14,10 @@ public class PayToAll extends ActionCard {
         for (int i = 0; i < receivers.length; i++) {
             if (payer.getName() != receivers[i].getName()) {
                 numReceivers++;
+                while(payer.getCash() < amount){
+                    payer.addLoan();
+                    payer.addCash(20000);
+                }
                 receivers[i].addCash(amount);
             }
         }
