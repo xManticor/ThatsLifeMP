@@ -34,22 +34,26 @@ public class MenuController implements Initializable {
         });
     }
 
+    @FXML
     public void onEnter(ActionEvent ae) {
         Stage stage = (Stage) (((Node) ae.getSource()).getScene().getWindow());
 
         FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("/view/Game.fxml"));
+        GameController gameController = new GameController(stage, (int) comboBox.getValue());
+        gameLoader.setController(gameController);
 
         try {
             stage.setScene(new Scene(gameLoader.load()));
-            ((GameController) gameLoader.getController()).setNumberOfPlayer((int) comboBox.getValue());
 
             // turns the stage into fullscreen
             stage.setMaximized(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        gameController.gameOn();
     }
 
+    @FXML
     public void onExit(ActionEvent ae) {
         ((Stage) (((Node) ae.getSource()).getScene().getWindow())).close();
     }

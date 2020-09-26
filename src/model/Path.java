@@ -5,18 +5,25 @@ import java.util.*;
 public class Path {
     private String name;
     private ArrayList<Space> spaces;
-    private int endpath;
 
     public Path(String name) {
         this.name = name;
         spaces = new ArrayList<Space>();
     }
 
-    public ArrayList<Space> getSpaces() {
-        return spaces;
+    public Space[] getSpaces() {
+        return spaces.toArray(new Space[0]);
     }
 
-    public String getSpaceType() {
+    public Space getLastSpace() {
+        return spaces.get(getNSpaces() - 1);
+    }
+
+    public int getNSpaces() {
+        return spaces.size();
+    }
+
+    public String getName() {
         return name;
     }
 

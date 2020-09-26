@@ -7,6 +7,11 @@ public class GraduationSpace extends MagentaSpace
         super(type);
     }
 
+    public GraduationSpace(String type, Path connector)
+    {
+        super(type, connector);
+    }
+
     public void graduatePlayer(Player player){
         player.setCollegeDegree(true);
     }

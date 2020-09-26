@@ -1,12 +1,17 @@
 package model;
 
+import javafx.scene.paint.Color;
+
 import java.awt.event.ActionEvent;
 
 public class OrangeSpace extends Space {
 
     public OrangeSpace(String type) {
+        super(type, Color.ORANGE);
+    }
 
-        super(type);
+    public OrangeSpace(String type, Path connector) {
+        super(type, Color.ORANGE, connector);
     }
 
     public ActionCard takeActionCard(Deck actionDeck) {

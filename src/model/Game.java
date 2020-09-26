@@ -15,14 +15,8 @@ public class Game {
     private Deck salaryDeck = new Deck("Salary Deck");
     private Deck houseDeck = new Deck("House Deck");
 
-    private Path collegePath = generateCollegePath();
-    private Path careerPath1 = generateCareerPath1();
-    private Path careerPath2 = generateCareerPath2();
-    private Path familyPath1 = generateFamilyPath1();
-    private Path careerPath3 = generateCareerPath3();
-    private Path familyPath2 = generateFamilyPath2();
-    private Path changeCareerPath2 = generateChangeCareerPath2();
-    private Path careerPath4 = generateCareerPath4();
+    private Path collegePath1;
+    private Path careerPath1;
 
 
     public Game(int numPlayers) {
@@ -39,26 +33,56 @@ public class Game {
         generateCareerDeck();
         generateHouseDeck();
         generateSalaryDeck();
+        generatePaths();
     }
 
-    private Path generateCollegePath() {
+    public void reminder() {
+        // if may mali sa which path, baka hindi lng consistent or may typo sa which path type
+        if(collegePath1.getLastSpace().getType().equals("Which Path?")) {
+            // ask for 2 paths
+            // ((WhichPathSpace) collegePath1.getLastSpace()).getPath1()
+            // ((WhichPathSpace) collegePath1.getLastSpace()).getPath2()
+        } else {
+            if(collegePath1.getLastSpace().getConnector() != null) {
+                Path nextPath = collegePath1.getLastSpace().getConnector();
+                players[0].setPath(nextPath);
+                players[0].setLocation(0);
+            }
+        }
+    }
+
+    private void generatePaths() {
+        Path careerPath4 = generateCareerPath4();
+        Path familyPath2 = generateFamilyPath2(careerPath4);
+        Path changeCareerPath2 = generateChangeCareerPath2(careerPath4);
+        Path careerPath3 = generateCareerPath3(familyPath2, changeCareerPath2);
+        Path familyPath1 = generateFamilyPath1(careerPath3);
+        Path changeCareerPath1 = generateChangeCareerPath1(careerPath3);
+        Path careerPath2 = generateCareerPath2(familyPath1, changeCareerPath1);
+        collegePath1 = generateCollegePath1(careerPath2);
+        careerPath1 = generateCareerPath1(careerPath2);
+    }
+
+    private Path generateCollegePath1(Path careerPath2) {
         Path collegePath = new Path("College Path");
+        collegePath.addSpace(new OrangeSpace("Start College"));
         collegePath.addSpace(new CollegeOrCareerChoiceSpace("College Career Choice"));
         for(int i = 0; i < 5; i++)
             collegePath.addSpace(new OrangeSpace("Orange Space"));
-        collegePath.addSpace(new JobSearchSpace("Job Search Space"));
+        collegePath.addSpace(new GraduationSpace("Graduation Space", careerPath2));
 
         return collegePath;
     }
 
-    private Path generateCareerPath1() {
+    private Path generateCareerPath1(Path careerPath2) {
         Path careerPath1 = new Path("Career Path");
+        careerPath1.addSpace(new OrangeSpace("Start Career"));
         careerPath1.addSpace(new PayRaise("Pay Raise"));
-        careerPath1.addSpace(new OrangeSpace("Orange Space"));
+        careerPath1.addSpace(new OrangeSpace("Orange Space", careerPath2));
         return careerPath1;
     }
 
-    private Path generateCareerPath2() {
+    private Path generateCareerPath2(Path familyPath1, Path changeCareerPath1) {
         Path careerPath2 = new Path("Career Path");
         careerPath2.addSpace(new OrangeSpace("Orange Space"));
         careerPath2.addSpace(new PayDay("Pay Day"));
@@ -69,11 +93,11 @@ public class Game {
             careerPath2.addSpace(new OrangeSpace("Orange Space"));
         careerPath2.addSpace(new BlueSpace("Blue Space"));
         careerPath2.addSpace(new OrangeSpace("Orange Space"));
-        careerPath2.addSpace(new WhichPathSpace("Which Path?"));
+        careerPath2.addSpace(new WhichPathSpace("Which Path?", familyPath1, changeCareerPath1));
         return careerPath2;
     }
 
-    private Path generateCareerPath3() {
+    private Path generateCareerPath3(Path familyPath2, Path changeCareerPath2) {
         Path careerPath3 = new Path("Career Path 3");
 
         for(int i = 0; i < 3; i++)
@@ -105,11 +129,37 @@ public class Game {
         careerPath3.addSpace(new PayDay("Pay Day"));
         for(int i = 0; i < 3; i++)
             careerPath3.addSpace(new OrangeSpace("Orange Space"));
-        careerPath3.addSpace(new WhichPathSpace("Which Path?"));
+        careerPath3.addSpace(new WhichPathSpace("Which Path?", familyPath2, changeCareerPath2));
         return careerPath3;
     }
 
-    private Path generateChangeCareerPath2() {
+    private Path generateChangeCareerPath1(Path careerPath3){
+        Path changeCareerPath1 = new Path("Change Career Path 1");
+
+        changeCareerPath1.addSpace(new CareerChoice("Career Choice Space"));
+        for(int i = 0; i < 2; i++)
+            changeCareerPath1.addSpace(new OrangeSpace("Orange Space"));
+        changeCareerPath1.addSpace(new PayDay("Pay Raise"));
+        for(int i = 0; i < 2; i++)
+            changeCareerPath1.addSpace(new OrangeSpace("Orange Space"));
+        changeCareerPath1.addSpace(new BlueSpace("Blue Space"));
+        for(int i = 0; i < 2; i++)
+            changeCareerPath1.addSpace(new OrangeSpace("Orange Space"));
+        changeCareerPath1.addSpace(new PayDay("Pay  Day"));
+        for(int i = 0; i < 2; i++)
+            changeCareerPath1.addSpace(new OrangeSpace("Orange Space"));
+        changeCareerPath1.addSpace(new BlueSpace("Blue Space"));
+        changeCareerPath1.addSpace(new OrangeSpace("Orange Space"));
+        changeCareerPath1.addSpace(new PayDay("Pay  Day"));
+        for(int i = 0; i < 2; i++)
+            changeCareerPath1.addSpace(new OrangeSpace("Orange Space"));
+        changeCareerPath1.addSpace(new PayRaise("Pay Raise"));
+        changeCareerPath1.addSpace(new OrangeSpace("Orange Space", careerPath3));
+
+        return changeCareerPath1;
+    }
+
+    private Path generateChangeCareerPath2(Path careerPath4) {
         Path changeCareerPath2 = new Path("Change Career Path 2");
         changeCareerPath2.addSpace(new CareerChoice("Career Choice Space"));
         changeCareerPath2.addSpace(new OrangeSpace("Orange Space"));
@@ -120,11 +170,11 @@ public class Game {
         changeCareerPath2.addSpace(new OrangeSpace("Orange Space"));
         changeCareerPath2.addSpace(new PayDay("Pay Day"));
         changeCareerPath2.addSpace(new BlueSpace("Blue Space"));
-        changeCareerPath2.addSpace(new OrangeSpace("Orange Space"));
+        changeCareerPath2.addSpace(new OrangeSpace("Orange Space", careerPath4));
         return changeCareerPath2;
     }
 
-    private Path generateFamilyPath2() {
+    private Path generateFamilyPath2(Path careerPath4) {
 
         Path familyPath2 = new Path("Family Path 2");
 
@@ -138,8 +188,9 @@ public class Game {
         familyPath2.addSpace(new HaveBabySpace("Have A Baby"));
         familyPath2.addSpace(new OrangeSpace("Orange Space"));
         familyPath2.addSpace(new BlueSpace("Blue Space"));
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < 2; i++)
             familyPath2.addSpace(new OrangeSpace("Orange Space"));
+        familyPath2.addSpace(new OrangeSpace("Orange Space", careerPath4));
         return familyPath2;
     }
 
@@ -155,7 +206,7 @@ public class Game {
         return careerPath4;
     }
 
-    private Path generateFamilyPath1() {
+    private Path generateFamilyPath1(Path careerPath3) {
 
         Path familyPath = new Path("Family Path 1");
 
@@ -166,11 +217,10 @@ public class Game {
         for(int i = 0; i < 2; i++)
             familyPath.addSpace(new OrangeSpace("Orange Space"));
         familyPath.addSpace(new BlueSpace("Blue Space"));
-        familyPath.addSpace(new OrangeSpace("Orange Space"));
         familyPath.addSpace(new HaveBabySpace("Have a Baby Space"));
+        familyPath.addSpace(new OrangeSpace("Orange Space", careerPath3));
         return familyPath;
     }
-
 
     public void display2TopCareer(){
         System.out.println(careerDeck.getDeck().get(0).getName() +","+ careerDeck.getDeck().get(0).getDescription());
@@ -247,6 +297,14 @@ public class Game {
 
     public int getNumRetired() {
         return retired.length;
+    }
+
+    public Path getCareerPath1() {
+        return careerPath1;
+    }
+
+    public Path getCollegePath1() {
+        return collegePath1;
     }
 
     /**

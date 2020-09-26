@@ -11,9 +11,7 @@ public class Driver extends Application {
         primaryStage.setTitle("That's Life!");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
     }
-
 
     public static void main(String[] args) {
         launch(args);

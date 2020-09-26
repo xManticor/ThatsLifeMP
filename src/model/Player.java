@@ -15,6 +15,7 @@ public class Player {
   private CareerCard career;
   private HouseCard house;
   private Path path;
+  private int location = 0;
   private int loan = 0;
   private boolean married = false;
   private boolean retired = false;
@@ -99,6 +100,14 @@ public class Player {
   public int getMaxRaise() { // int for now
 
     return this.career.maxRaise;
+  }
+
+  public int getLocation() {
+    return location;
+  }
+
+  public void setLocation(int location) {
+    this.location = location;
   }
 
   public boolean hasCollegeDegree() {
