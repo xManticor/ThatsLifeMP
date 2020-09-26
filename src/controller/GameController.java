@@ -42,8 +42,11 @@ public class GameController implements Initializable {
         this.numberOfPlayer = numberOfPlayer;
     }
 
+    public void setHouse()
+
     public void refreshScreen() {
         // refresh board
         // refresh stats
     }
+
 }

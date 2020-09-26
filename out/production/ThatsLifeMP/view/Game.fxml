@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="473.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
+<AnchorPane prefHeight="561.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
    <children>
       <Pane layoutX="-1.0" layoutY="429.0" prefHeight="44.0" prefWidth="663.0" style="-fx-background-color: #A9DFBF;" />
-      <ImageView fitHeight="442.0" fitWidth="617.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="428.0" fitWidth="754.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@GUI_Layout.png" />
          </image>
