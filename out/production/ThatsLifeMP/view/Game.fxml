@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<<<<<<< HEAD
 <VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ScrollPane>
@@ -45,5 +46,45 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
+=======
+<AnchorPane prefHeight="561.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
+   <children>
+      <Pane layoutX="-1.0" layoutY="429.0" prefHeight="44.0" prefWidth="663.0" style="-fx-background-color: #A9DFBF;" />
+      <ImageView fitHeight="428.0" fitWidth="754.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@GUI_Layout.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="99.0" layoutY="222.0" text="GAME">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="430.0" text="PLAYER">
+         <font>
+            <Font name="3ds Regular" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="121.0" layoutY="430.0" text="CASH">
+         <font>
+            <Font name="3ds Regular" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="211.0" layoutY="430.0" text="CAREER">
+         <font>
+            <Font name="3ds Regular" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="409.0" layoutY="430.0" text="HOUSE">
+         <font>
+            <Font name="3ds Regular" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="315.0" layoutY="430.0" text="SALARY">
+         <font>
+            <Font name="3ds Regular" size="12.0" />
+         </font>
+      </Label>
+>>>>>>> 470a81b20b54d90b5bb0949fe4a3e0168f5956c8
    </children>
 </VBox>
