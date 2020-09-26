@@ -1,5 +1,7 @@
 package model;
 
+import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
+
 import java.util.Scanner;
 import java.util.*;
 
@@ -49,11 +51,23 @@ public class Game {
 
     private Path generateCareerPath1() {
         Path careerPath1 = new Path("Career Path");
+        careerPath1.addSpace(new PayRaise("Pay Raise"));
+        careerPath1.addSpace(new OrangeSpace("Orange Space"));
         return careerPath1;
     }
 
     private Path generateCareerPath2() {
         Path careerPath2 = new Path("Career Path");
+        careerPath2.addSpace(new OrangeSpace("Orange Space"));
+        careerPath2.addSpace(new PayDay("Pay Day"));
+        for( int i = 0; i < 3; i++)
+            careerPath2.addSpace(new OrangeSpace("Orange Space"));
+        careerPath2.addSpace(new PayDay("Pay Day"));
+        for( int i = 0; i < 3; i++)
+            careerPath2.addSpace(new OrangeSpace("Orange Space"));
+        careerPath2.addSpace(new BlueSpace("Blue Space"));
+        careerPath2.addSpace(new OrangeSpace("Orange Space"));
+        careerPath2.addSpace(new Whic);
         return careerPath2;
     }
 
