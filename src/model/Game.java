@@ -16,9 +16,9 @@ public class Game {
     Deck salaryDeck = new Deck("Salary Deck");
     Deck houseDeck = new Deck("House Deck");
 
-    Path collegePath = new Path("College Path", 7);
-    Path careerPath1 = new Path("Career Path 1", 2);
-    Path careerPath2 = new Path("Career Path 2", 11);
+    Path collegePath = generateCollegePath();
+    Path careerPath1 = generateCareerPath1();
+    Path careerPath2 = generateCareerPath2();
 
 
     public Game(int numPlayers) {
@@ -35,14 +35,22 @@ public class Game {
         generateCareerDeck();
         generateHouseDeck();
         generateSalaryDeck();
-
-
     }
 
-    /*public void generatePath(){
+    private Path generateCollegePath() {
+        Path collegePath = new Path("College Path");
+        return collegePath;
+    }
 
-        for(int i = 0; i < Path.length; )
-    }*/
+    private Path generateCareerPath1() {
+        Path careerPath1 = new Path("Career Path");
+        return careerPath1;
+    }
+
+    private Path generateCareerPath2() {
+        Path careerPath2 = new Path("Career Path");
+        return careerPath2;
+    }
 
 
     public void display2TopCareer(){
@@ -82,6 +90,7 @@ public class Game {
     }
 
     public void generateCareerDeck() {
+
         careerDeck.addCard(new CareerCard("Lawyer", generateRandom(5, 8), true));
         careerDeck.addCard(new CareerCard("Accountant", generateRandom(4, 7), true));
         careerDeck.addCard(new CareerCard("Computer Consultant", generateRandom(3, 7), true));
