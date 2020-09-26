@@ -25,6 +25,8 @@ public class Game {
     private Path careerPath3 = generateCareerPath3();
     private Path familyPath2 = generateFamilyPath2();
     private Path changeCareerPath2 = generateChangeCareerPath2();
+    private Path careerPath4 = generateCareerPath4();
+
 
     public Game(int numPlayers) {
         this.numPlayers = numPlayers;
@@ -112,58 +114,37 @@ public class Game {
 
     private Path generateChangeCareerPath2() {
         Path changeCareerPath2 = new Path("Change Career Path 2");
-
-        changeCareerPath2.addSpace(new Caree);
-
+        changeCareerPath2.addSpace(new CareerChoice("Career Choice Space"));
         changeCareerPath2.addSpace(new OrangeSpace("Orange Space"));
-
         changeCareerPath2.addSpace(new BlueSpace("Blue Space"));
-
         for(int i = 0; i < 2; i++)
             changeCareerPath2.addSpace(new OrangeSpace("Orange Space"));
-
         changeCareerPath2.addSpace(new PayRaise("Pay Raise"));
-
         changeCareerPath2.addSpace(new OrangeSpace("Orange Space"));
-
         changeCareerPath2.addSpace(new PayDay("Pay Day"));
-
         changeCareerPath2.addSpace(new BlueSpace("Blue Space"));
-
         changeCareerPath2.addSpace(new OrangeSpace("Orange Space"));
-
         return changeCareerPath2;
-
     }
 
     private Path generateFamilyPath2() {
+
         Path familyPath2 = new Path("Family Path 2");
 
         familyPath2.addSpace(new GetMarriedSpace("Get Married"));
-
         for(int i = 0; i < 2; i++)
             familyPath2.addSpace(new OrangeSpace("Orange Space"));
-
         familyPath2.addSpace(new BlueSpace("Blue Space"));
-
         familyPath2.addSpace(new BuyHouseSpace("Buy A House"));
-
         for(int i = 0; i < 3; i++)
             familyPath2.addSpace(new OrangeSpace("Orange Space"));
-
         familyPath2.addSpace(new HaveBabySpace("Have A Baby"));
-
         familyPath2.addSpace(new OrangeSpace("Orange Space"));
-
         familyPath2.addSpace(new BlueSpace("Blue Space"));
-
         for(int i = 0; i < 3; i++)
             familyPath2.addSpace(new OrangeSpace("Orange Space"));
-
         return familyPath2;
     }
-
-    private Path careerPath4 = generateCareerPath4(); // variablue, put on top
 
     private Path generateCareerPath4(){
 
@@ -171,31 +152,25 @@ public class Game {
 
         for(int i = 0; i < 2; i++)
             careerPath4.addSpace(new OrangeSpace("Orange Space"));
-
         careerPath4.addSpace(new PayDay("Pay Day"));
-
         for(int i = 0; i < 2; i++)
             careerPath4.addSpace(new OrangeSpace("Orange Space"));
+        return careerPath4;
     }
 
     private Path generateFamilyPath() {
+
         Path familyPath = new Path("Family Path");
+
         familyPath.addSpace(new GetMarriedSpace("Get Married Space"));
-
         for(int i = 0; i < 2; i++)
             familyPath.addSpace(new OrangeSpace("Orange Space"));
-
         familyPath.addSpace(new BuyHouseSpace("Buy a House Space"));
-
         for(int i = 0; i < 2; i++)
             familyPath.addSpace(new OrangeSpace("Orange Space"));
-
         familyPath.addSpace(new BlueSpace("Blue Space"));
-
         familyPath.addSpace(new OrangeSpace("Orange Space"));
-
         familyPath.addSpace(new HaveBabySpace("Have a Baby Space"));
-
         return familyPath;
     }
 
