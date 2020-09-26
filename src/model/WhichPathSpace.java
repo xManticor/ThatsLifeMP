@@ -7,11 +7,11 @@ public class WhichPathSpace extends MagentaSpace
         super(name);
     }
 
-    public Path choosePath(){
+    /*public Path choosePath(){
         .
         .
 
         .
 
-    }
+    }*/
 }

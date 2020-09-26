@@ -1,9 +1,6 @@
 package model;
 
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
-
-import java.util.Scanner;
-import java.util.*;
+import java.util.Collections;
 
 public class Game {
 
