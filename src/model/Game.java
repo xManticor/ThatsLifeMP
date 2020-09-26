@@ -19,7 +19,7 @@ public class Game {
     Path collegePath = generateCollegePath();
     Path careerPath1 = generateCareerPath1();
     Path careerPath2 = generateCareerPath2();
-
+    Path familyPath = generateFamilyPath();
 
     public Game(int numPlayers) {
         this.numPlayers = numPlayers;
@@ -55,6 +55,27 @@ public class Game {
     private Path generateCareerPath2() {
         Path careerPath2 = new Path("Career Path");
         return careerPath2;
+    }
+
+    private Path generateFamilyPath() {
+        Path familyPath = new Path("Family Path");
+        familyPath.addSpace(new GetMarriedSpace("Get Married Space"));
+
+        for(int i = 0; i < 2; i++)
+            familyPath.addSpace(new OrangeSpace("Orange Space"));
+
+        familyPath.addSpace(new BuyHouseSpace("Buy a House Space"));
+
+        for(int i = 0; i < 2; i++)
+            familyPath.addSpace(new OrangeSpace("Orange Space"));
+
+        familyPath.addSpace(new BlueSpace("Blue Space"));
+
+        familyPath.addSpace(new OrangeSpace("Orange Space"));
+
+        familyPath.addSpace(new HaveBabySpace("Have a Baby Space"));
+
+        return familyPath;
     }
 
 
