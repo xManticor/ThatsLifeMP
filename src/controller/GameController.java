@@ -288,12 +288,42 @@ public class GameController implements Initializable {
                 ((GraduateSpace) space).graduatePlayer(game.getCurrentPlayer());
             else if(space.getType().equals("Get Married"))
                 ((GetMarriedSpace) space).playerMarry(game.getCurrentPlayer(), game.getOtherPlayers());
-            //else if(space.getType().equals("College Career Choice"))
-                //((CollegeCareerChoiceSpace) space).selectCareerCard()
+            else if(space.getType().equals("College Career Choice")) {
+                Stage careerChoiceStage = new Stage();
+
+                FXMLLoader careerChoiceLoader = new FXMLLoader(getClass().getResource("/view/CareerChoice"));
+                CareerChoiceController careerChoiceController = new CareerChoiceController();
+                careerChoiceLoader.setController(careerChoiceController);
+
+                try{
+                    careerChoiceStage.setScene(new Scene(careerChoiceLoader.load()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                careerChoiceStage.showAndWait();
+            }
             //else if(space.getType().equals("Job Search"))
                 //((JobSearchSpace) game.getCurrentPlayer())
-            //else if(space.getType().equals("Buy A House"))
-                //game.getCurrentPlayer().
+            else if(space.getType().equals("Buy A House")) {
+                Stage chooseHouseStage = new Stage();
+                FXMLLoader chooseHouseLoader = new FXMLLoader(getClass().getResource("/view/ChooseHouse.fxml"));
+                ChooseHouseController chooseHouseController = new ChooseHouseController(game.getHouseDeck());
+                chooseHouseLoader.setController(chooseHouseController);
+
+                try{
+                    chooseHouseStage.setScene(new Scene(chooseHouseLoader.load()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                chooseHouseStage.showAndWait();
+                HouseCard houseCard = chooseHouseController.getHouseCard();
+                game.getCurrentPlayer().removeCash(houseCard.getValue());
+                game.getCurrentPlayer().setHouse(houseCard);
+            }
+
+
 
         }
     }
