@@ -68,13 +68,26 @@ public class GameController implements Initializable {
             if(player.getPath() == null) {
                 // ask for path
                 Stage askPathStage = new Stage();
+                askPathStage.initStyle(StageStyle.UNDECORATED);
+                askPathStage.initModality(Modality.APPLICATION_MODAL);
+
+                FXMLLoader askPathLoader = new FXMLLoader(getClass().getResource("/view/AskPath.fxml"));
+
+                try {
+                    askPathStage.setScene(new Scene(askPathLoader.load()));
+                    ((AskPathController) askPathLoader.getController()).setPaths(game.getCareerPath1(), game.getCollegePath1());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                askPathStage.showAndWait();
+                player.setPath(((AskPathController) askPathLoader.getController()).getPath());
             }
         }
     }
 
     @FXML
     public void onClickMove(ActionEvent ae) {
-
         game.setTurn(game.getTurn() + 1);
         if(game.getTurn() == game.getNumPlayers()) {
             game.setTurn(0);
@@ -91,6 +104,8 @@ public class GameController implements Initializable {
     }
 
     private void updatePayLoanButton() {
+        System.out.println(game.getCurrentPlayer());
+        System.out.println(game.getTurn());
         if(game.getCurrentPlayer().getLoan() > 0) {
             payLoanButton.setDisable(false);
         } else {

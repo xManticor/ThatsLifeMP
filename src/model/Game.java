@@ -319,7 +319,7 @@ public class Game {
     }
 
     public Player getCurrentPlayer() {
-        if(turn > 0 && turn < getNumPlayers()) {
+        if(turn >= 0 && turn < getNumPlayers()) {
             return players.get(turn);
         } else {
             return null;
