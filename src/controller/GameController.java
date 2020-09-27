@@ -16,6 +16,7 @@ import javafx.stage.StageStyle;
 import model.*;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 
@@ -87,11 +88,21 @@ public class GameController implements Initializable {
                     player.addLoan();
                     player.addLoan();
                 } else {
-                    // draw career card
-                    // draw salary card
-
+                    // draw career card and assign it to the player
+                    CareerCard careerCard;
+                    // this loop is to return the card if it required a college degree
+                    do {
+                        careerCard = (CareerCard) game.getCareerDeck().drawCard();
+                        if(careerCard.isDegreeRequired()) {
+                            game.getCareerDeck().addCard(careerCard);
+                        }
+                    } while(careerCard.isDegreeRequired());
+                    player.setCareer(careerCard);
+                    // draw salary card and assign it to the player
+                    player.setSalary((SalaryCard) game.getSalaryDeck().drawCard());
                 }
                 player.setPath(selectedPath);
+                player.getPath().getSpace(player.getLocation()).addPlayer(player);
             }
         }
 
@@ -101,6 +112,103 @@ public class GameController implements Initializable {
 
     @FXML
     public void onClickMove(ActionEvent ae) {
+        Random random = new Random();
+        int dice = random.nextInt(10) + 1;
+        System.out.println(game.getCurrentPlayer().getName() + " rolled " + dice);
+
+        int diceLeft = 0;
+        boolean isNextPath = false;
+        Space space = null;
+
+        System.out.println(game.getCurrentPlayer().getLocation());
+        game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()).removePlayer(game.getCurrentPlayer());
+
+        for(int i = 0; i < dice; i++) {
+            game.getCurrentPlayer().setLocation(game.getCurrentPlayer().getLocation() + 1);
+            System.out.println(game.getCurrentPlayer().getPath().getNSpaces() + " - " + game.getCurrentPlayer().getLocation());
+
+            // stops if player reached the end of the Path
+            if(game.getCurrentPlayer().getPath().getNSpaces() - 1 == game.getCurrentPlayer().getLocation()) {
+                isNextPath = true;
+                diceLeft = dice - i - 2;
+                break;
+            }
+            space = game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation());
+            // stops if player is in magenta space
+            if(game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()).getColor().equals(Color.MAGENTA)) {
+                break;
+            }
+        }
+
+        if(isNextPath) {
+            if(game.getCurrentPlayer().getPath().getLastSpace().getConnector() != null) {
+                Path nextPath = game.getCurrentPlayer().getPath().getLastSpace().getConnector();
+                game.getCurrentPlayer().setPath(nextPath);
+                for(int i = 0; i < diceLeft; i++) {
+                    game.getCurrentPlayer().setLocation(game.getCurrentPlayer().getLocation() + 1);
+                    space = game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation());
+                    // stops if player is in magenta space
+                    if(game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()).getColor().equals(Color.MAGENTA)) {
+                        break;
+                    }
+                }
+                handleSpace(space);
+            } else if(game.getCurrentPlayer().getPath().getLastSpace().getType().equals("Which Path?")) {
+                Path path1 = ((WhichPathSpace) game.getCurrentPlayer().getPath().getLastSpace()).getPath1();
+                Path path2 = ((WhichPathSpace) game.getCurrentPlayer().getPath().getLastSpace()).getPath2();
+
+                // ask for path
+                Stage askPathStage = new Stage();
+                askPathStage.initStyle(StageStyle.UNDECORATED);
+                askPathStage.initModality(Modality.APPLICATION_MODAL);
+
+                FXMLLoader askPathLoader = new FXMLLoader(getClass().getResource("/view/AskPath.fxml"));
+
+                try {
+                    askPathStage.setScene(new Scene(askPathLoader.load()));
+                    ((AskPathController) askPathLoader.getController()).setPaths(path1, path2);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                askPathStage.showAndWait();
+                Path selectedPath = ((AskPathController) askPathLoader.getController()).getPath();
+                game.getCurrentPlayer().setPath(selectedPath);
+
+                if(game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()).getColor().equals(Color.MAGENTA)) {
+                    // activate magenta space
+                    handleSpace(game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()));
+                }
+            } else {
+                // player is retired
+                game.getCurrentPlayer().setRetired(true);
+                game.getCurrentPlayer().setPath(null);
+                if(game.getCurrentPlayer().getCareer() != null) {
+                    game.getCareerDeck().addCard(game.getCurrentPlayer().getCareer());
+                    game.getCurrentPlayer().setCareer(null);
+                }
+
+                if(game.getCurrentPlayer().getSalary() != null) {
+                    game.getSalaryDeck().addCard(game.getCurrentPlayer().getSalary());
+                    game.getCurrentPlayer().setSalary(null);
+                }
+
+                // pay all loans
+                game.getCurrentPlayer().payLoan(game.getCurrentPlayer().getLoan() / 25000);
+
+                // sell house
+                if(game.getCurrentPlayer().getHouse() != null) {
+                    game.getCurrentPlayer().addCash(game.getCurrentPlayer().getHouse().getValue());
+                    game.getHouseDeck().addCard(game.getCurrentPlayer().getHouse());
+                    game.getCurrentPlayer().setHouse(null);
+                }
+            }
+        } else {
+            handleSpace(game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()));
+        }
+
+        game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()).addPlayer(game.getCurrentPlayer());
+
         game.setTurn(game.getTurn() + 1);
         if(game.getTurn() == game.getNumPlayers()) {
             game.setTurn(0);
@@ -108,6 +216,18 @@ public class GameController implements Initializable {
 
         updatePayLoanButton();
         refreshScreen();
+    }
+
+    private void handleSpace(Space space) {
+        if(space.getColor().equals(Color.ORANGE)) {
+
+        } else if(space.getColor().equals(Color.BLUE)) {
+
+        } else if(space.getColor().equals(Color.GREEN)) {
+
+        } else if(space.getColor().equals(Color.MAGENTA)) {
+
+        }
     }
 
     @FXML
@@ -134,8 +254,6 @@ public class GameController implements Initializable {
     }
 
     private void updatePayLoanButton() {
-        System.out.println(game.getCurrentPlayer());
-        System.out.println(game.getTurn());
         if(game.getCurrentPlayer().getLoan() > 0) {
             payLoanButton.setDisable(false);
         } else {
@@ -152,10 +270,9 @@ public class GameController implements Initializable {
         if(game.getCurrentPlayer().getCareer() != null) careerLabel.setText("CAREER:" + game.getCurrentPlayer().getCareer().getName());
         else careerLabel.setText("CAREER:" + game.getCurrentPlayer().getCareer());
         if(game.getCurrentPlayer().getSalary() != null) salaryLabel.setText("SALARY:" + Integer.toString(game.getCurrentPlayer().getSalary().getSalary()));
-        else careerLabel.setText("SALARY:" + game.getCurrentPlayer().getSalary());
+        else salaryLabel.setText("SALARY:" + game.getCurrentPlayer().getSalary());
         if(game.getCurrentPlayer().getPath() != null) pathLabel.setText("PATH:" + game.getCurrentPlayer().getPath().getName());
-        else careerLabel.setText("PATH:" + game.getCurrentPlayer().getPath());
-
+        else pathLabel.setText("PATH:" + game.getCurrentPlayer().getPath());
     }
 
     public void drawBoard() {
@@ -236,7 +353,8 @@ public class GameController implements Initializable {
             drawSpace(collegePath1.getSpaces()[i], x, y, gc);
         }
 
-        x -= 50;
+        gc.setFill(Color.BLACK);
+        gc.fillText("College Path 1", x - 100, y + 60);
 
         for(int i = 6; i < collegePath1.getNSpaces(); i++) {
             y -= 50;
@@ -249,6 +367,9 @@ public class GameController implements Initializable {
             drawSpace(careerPath1.getSpaces()[i], x, y, gc);
             x += 50;
         }
+
+        gc.setFill(Color.BLACK);
+        gc.fillText("Career Path 1", x - 120, y - 10);
     }
 
     private void drawCareerPath2(Path careerPath2, double x, double y, GraphicsContext gc) {
@@ -263,6 +384,9 @@ public class GameController implements Initializable {
             x -= 50;
             drawSpace(careerPath2.getSpaces()[i], x, y, gc);
         }
+
+        gc.setFill(Color.BLACK);
+        gc.fillText("Career Path 2", x + 120, y - 10);
     }
 
     private void drawChangeCareerPath1(Path changeCareerPath1, double x, double y, GraphicsContext gc)  {
@@ -272,6 +396,9 @@ public class GameController implements Initializable {
         }
 
         y += 50;
+
+        gc.setFill(Color.BLACK);
+        gc.fillText("Change Career Path 1", x - 120, y + 60);
 
         for(int i = 4; i < 12; i++) {
             x -= 50;
@@ -292,6 +419,9 @@ public class GameController implements Initializable {
 
         x += 50;
 
+        gc.setFill(Color.BLACK);
+        gc.fillText("Start a Family Path 1", x + 120, y - 10);
+
         for(int i = 6; i < familyPath1.getNSpaces(); i++) {
             y += 50;
             drawSpace(familyPath1.getSpaces()[i], x, y, gc);
@@ -306,6 +436,9 @@ public class GameController implements Initializable {
 
         y -= 50;
 
+        gc.setFill(Color.BLACK);
+        gc.fillText("Career Path 3", x + 120, y - 10);
+
         for(int i = 9; i < 28; i++) {
             x += 50;
             drawSpace(careerPath3.getSpaces()[i], x, y, gc);
@@ -318,6 +451,9 @@ public class GameController implements Initializable {
     }
 
     private void drawChangeCareerPath2(Path changeCareerPath2, double x, double y, GraphicsContext gc) {
+        gc.setFill(Color.BLACK);
+        gc.fillText("Change Career Path 2", x - 70, y + 60);
+
         for(int i = 0; i < 2; i++) {
             drawSpace(changeCareerPath2.getSpaces()[i], x, y, gc);
             x -= 50;
@@ -332,6 +468,9 @@ public class GameController implements Initializable {
     }
 
     private void drawFamilyPath2(Path familyPath2, double x, double y, GraphicsContext gc) {
+        gc.setFill(Color.BLACK);
+        gc.fillText("Start a Family Path 2", x + 20, y + 60);
+
         for(int i = 0; i < 2; i++) {
             drawSpace(familyPath2.getSpaces()[i], x, y, gc);
             x += 50;
@@ -364,8 +503,12 @@ public class GameController implements Initializable {
         gc.fillRect(x, y, 50, 50);
         gc.strokeRect(x, y, 50, 50);
         gc.fillText(space.getType(), x, y);
+
+        gc.setFill(Color.BLACK);
         for(Player player : space.getPlayers()) {
 //            gc.drawImage( new Image(""));
+            gc.fillText(player.getName(), x, y + 25);
+            x += 15;
         }
     }
 }

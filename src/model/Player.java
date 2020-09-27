@@ -155,6 +155,7 @@ public class Player {
 
   public void setPath(Path path) {
     this.path = path;
+    this.location = 0;
   }
 
   public void addChild(int child){

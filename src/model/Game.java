@@ -7,8 +7,6 @@ public class Game {
 
     private ArrayList<Player> players;
     private ArrayList<Player> retired;
-    private int numPlayers;
-    private String pName;
 
     private Deck actionDeck = new Deck("Action Deck");
     private Deck blueDeck = new Deck("Blue Deck");
@@ -22,7 +20,6 @@ public class Game {
     int turn = 0;
 
     public Game(int numPlayers) {
-        this.numPlayers = numPlayers;
         this.players = new ArrayList<>();
         this.retired = new ArrayList<>();
 
@@ -37,21 +34,6 @@ public class Game {
         generateHouseDeck();
         generateSalaryDeck();
         generatePaths();
-    }
-
-    public void reminder() {
-        // if may mali sa which path, baka hindi lng consistent or may typo sa which path type
-        if(collegePath1.getLastSpace().getType().equals("Which Path?")) {
-            // ask for 2 paths
-            // ((WhichPathSpace) collegePath1.getLastSpace()).getPath1()
-            // ((WhichPathSpace) collegePath1.getLastSpace()).getPath2()
-        } else {
-            if(collegePath1.getLastSpace().getConnector() != null) {
-                Path nextPath = collegePath1.getLastSpace().getConnector();
-//                players[0].setPath(nextPath);
-//                players[0].setLocation(0);
-            }
-        }
     }
 
     private void generatePaths() {
@@ -334,6 +316,26 @@ public class Game {
             }
         }
         return players.toArray(new Player[0]);
+    }
+
+    public Deck getHouseDeck() {
+        return houseDeck;
+    }
+
+    public Deck getCareerDeck() {
+        return careerDeck;
+    }
+
+    public Deck getBlueDeck() {
+        return blueDeck;
+    }
+
+    public Deck getActionDeck() {
+        return actionDeck;
+    }
+
+    public Deck getSalaryDeck() {
+        return salaryDeck;
     }
 
     /**

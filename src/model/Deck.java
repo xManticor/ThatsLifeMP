@@ -33,8 +33,7 @@ public class Deck {
   }
 
   public Card drawCard() {
-    Card tempcard;
-    tempcard = cards.get(0);
+    Card tempcard = cards.get(0);
     cards.remove(0);
     return tempcard;
   }

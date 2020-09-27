@@ -15,6 +15,10 @@ public class Path {
         return spaces.toArray(new Space[0]);
     }
 
+    public Space getSpace(int index) {
+        return spaces.get(index);
+    }
+
     public Space getLastSpace() {
         return spaces.get(getNSpaces() - 1);
     }
