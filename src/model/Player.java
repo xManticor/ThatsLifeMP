@@ -121,6 +121,16 @@ public class Player {
     return loan;
   }
 
+  public void requestLoan(int multiplierLoan) {
+    for(int i = 0; i < multiplierLoan; i++) addLoan();
+    addCash(20000 * multiplierLoan);
+  }
+
+  public void payLoan(int multiplierLoan) {
+    loan -= 25000 * multiplierLoan;
+    payCash(25000 * multiplierLoan);
+  }
+
   public HouseCard getHouse() {
     return this.house;
   }
@@ -137,6 +147,10 @@ public class Player {
 
   public void addCash(int amount) {
     this.cash += amount;
+  }
+
+  public void payCash(int amount) {
+    this.cash -= amount;
   }
 
   public void setPath(Path path) {
@@ -227,7 +241,6 @@ public class Player {
   public void setCollegeDegree(boolean collegeDegree) {
     this.collegeDegree = collegeDegree;
   }
-
 
   public Path getPath() {
     return path;

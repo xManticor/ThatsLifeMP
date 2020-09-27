@@ -5,21 +5,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AskNameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AskNameController">
    <children>
-      <HBox spacing="20.0">
+      <Pane  style="-fx-background-color: #A9DFBF;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <VBox AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
-            <Label text="Enter Player Name">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="nameInput" />
+            <HBox spacing="20.0">
+               <children>
+                  <Label text="Enter Player Name">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="nameInput" />
+               </children>
+            </HBox>
+            <Button fx:id="enterButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickEnter" text="Enter" />
          </children>
-      </HBox>
-      <Button fx:id="enterButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickEnter" text="Enter" />
+      </VBox>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
-</VBox>
+</AnchorPane>

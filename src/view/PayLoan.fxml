@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane style="-fx-background-color: #A9DFBF;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label fx:id="titleLabel" text="Pay Loan">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <HBox spacing="20.0">
+               <children>
+                  <Label text="\$25000 x">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Spinner fx:id="spinner" editable="true" prefWidth="50.0" />
+               </children></HBox>
+            <Button fx:id="enterButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickEnter" text="Enter" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

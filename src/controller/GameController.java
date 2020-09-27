@@ -42,9 +42,10 @@ public class GameController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        game = new Game(numberOfPlayer);
+
         board.setWidth(23 * 1.5 * 50);
         board.setHeight(16 * 1.5 * 50);
-        game = new Game(numberOfPlayer);
 
         for(Player player : game.getPlayers()) {
             if(player.getName() == null) {
@@ -81,9 +82,21 @@ public class GameController implements Initializable {
                 }
 
                 askPathStage.showAndWait();
-                player.setPath(((AskPathController) askPathLoader.getController()).getPath());
+                Path selectedPath = ((AskPathController) askPathLoader.getController()).getPath();
+                if(selectedPath.getName().equals("College Path")) {
+                    player.addLoan();
+                    player.addLoan();
+                } else {
+                    // draw career card
+                    // draw salary card
+
+                }
+                player.setPath(selectedPath);
             }
         }
+
+        if(game.getCurrentPlayer().getLoan() > 0) payLoanButton.setDisable(false);
+        else payLoanButton.setDisable(true);
     }
 
     @FXML
@@ -98,7 +111,24 @@ public class GameController implements Initializable {
     }
 
     @FXML
-    public void onClickPayDebt(ActionEvent ae) {
+    public void onClickPayLoan(ActionEvent ae) {
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        FXMLLoader payLoadLoader = new FXMLLoader(getClass().getResource("/view/PayLoan.fxml"));
+        PayLoanController payLoanController = new PayLoanController(game.getCurrentPlayer());
+        payLoadLoader.setController(payLoanController);
+
+        try {
+            stage.setScene(new Scene(payLoadLoader.load()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        stage.showAndWait();
+        game.getCurrentPlayer().payLoan(payLoanController.getLoanMultiplier());
+
         updatePayLoanButton();
         refreshScreen();
     }
