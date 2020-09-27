@@ -1,18 +1,35 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.*;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class GameController {
+
+public class GameController implements Initializable {
     private int numberOfPlayer;
 
     @FXML
     private Canvas board;
+
+    @FXML
+    private Button moveButton, payLoanButton;
+
+    @FXML
+    private Label playerLabel, cashLabel, careerLabel, salaryLabel, pathLabel;
 
     private Stage stage;
 
@@ -23,21 +40,77 @@ public class GameController {
         this.numberOfPlayer = numberOfPlayer;
     }
 
-    public void gameOn() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         board.setWidth(23 * 1.5 * 50);
         board.setHeight(16 * 1.5 * 50);
         game = new Game(numberOfPlayer);
-        int turn = 0;
 
+        for(Player player : game.getPlayers()) {
+            if(player.getName() == null) {
+                // ask for player name
+                Stage askNameStage = new Stage();
+                askNameStage.initStyle(StageStyle.UNDECORATED);
+                askNameStage.initModality(Modality.APPLICATION_MODAL);
+
+                FXMLLoader askNameLoader = new FXMLLoader(getClass().getResource("/view/AskName.fxml"));
+
+                try {
+                    askNameStage.setScene(new Scene(askNameLoader.load()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                askNameStage.showAndWait();
+                player.setName(((AskNameController) askNameLoader.getController()).getName());
+            }
+
+            if(player.getPath() == null) {
+                // ask for path
+                Stage askPathStage = new Stage();
+            }
+        }
+    }
+
+    @FXML
+    public void onClickMove(ActionEvent ae) {
+
+        game.setTurn(game.getTurn() + 1);
+        if(game.getTurn() == game.getNumPlayers()) {
+            game.setTurn(0);
+        }
+
+        updatePayLoanButton();
+        refreshScreen();
+    }
+
+    @FXML
+    public void onClickPayDebt(ActionEvent ae) {
+        updatePayLoanButton();
+        refreshScreen();
+    }
+
+    private void updatePayLoanButton() {
+        if(game.getCurrentPlayer().getLoan() > 0) {
+            payLoanButton.setDisable(false);
+        } else {
+            payLoanButton.setDisable(true);
+        }
+    }
+
+    public void refreshScreen() {
+        // refresh board
         drawBoard();
-//        while(game.getNumRetired() != game.getNumPlayers()) {
-//            drawBoard();
-//            getPlayerTurn(game.getPlayers()[turn]);
-//            turn++;
-//
-//            if(turn == game.getNumPlayers()) turn = 0;
-//            refreshScreen();
-//        }
+        // refresh stats
+        playerLabel.setText("PLAYER:" + game.getCurrentPlayer().getName());
+        cashLabel.setText("CASH:" + game.getCurrentPlayer().getCash());
+        if(game.getCurrentPlayer().getCareer() != null) careerLabel.setText("CAREER:" + game.getCurrentPlayer().getCareer().getName());
+        else careerLabel.setText("CAREER:" + game.getCurrentPlayer().getCareer());
+        if(game.getCurrentPlayer().getSalary() != null) salaryLabel.setText("SALARY:" + Integer.toString(game.getCurrentPlayer().getSalary().getSalary()));
+        else careerLabel.setText("SALARY:" + game.getCurrentPlayer().getSalary());
+        if(game.getCurrentPlayer().getPath() != null) pathLabel.setText("PATH:" + game.getCurrentPlayer().getPath().getName());
+        else careerLabel.setText("PATH:" + game.getCurrentPlayer().getPath());
+
     }
 
     public void drawBoard() {
@@ -111,12 +184,11 @@ public class GameController {
             y += 50;
         }
 
-        x += 50;
         y -= 50;
 
         for(int i = 2; i < 6; i++) {
-            drawSpace(collegePath1.getSpaces()[i], x, y, gc);
             x += 50;
+            drawSpace(collegePath1.getSpaces()[i], x, y, gc);
         }
 
         x -= 50;
@@ -141,11 +213,10 @@ public class GameController {
         }
 
         y += 50;
-        x -= 50;
 
         for(int i = 5; i < careerPath2.getNSpaces(); i++) {
-            drawSpace(careerPath2.getSpaces()[i], x, y, gc);
             x -= 50;
+            drawSpace(careerPath2.getSpaces()[i], x, y, gc);
         }
     }
 
@@ -175,11 +246,10 @@ public class GameController {
         }
 
         x += 50;
-        y += 50;
 
         for(int i = 6; i < familyPath1.getNSpaces(); i++) {
-            drawSpace(familyPath1.getSpaces()[i], x, y, gc);
             y += 50;
+            drawSpace(familyPath1.getSpaces()[i], x, y, gc);
         }
     }
 
@@ -253,26 +323,4 @@ public class GameController {
 //            gc.drawImage( new Image(""));
         }
     }
-
-
-
-    private void getPlayerTurn(Player player) {
-        if(player.getName() == null) {
-            // ask for player name
-        }
-
-        if(player.getPath() == null) {
-            // ask for path
-        }
-
-        // ask for player to choose a move
-        // - roll dice
-        // - pay debt (only if may debt)
-    }
-
-    public void refreshScreen() {
-        // refresh board
-        // refresh stats
-    }
-
 }

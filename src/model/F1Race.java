@@ -9,7 +9,7 @@ public class F1Race extends BlueCard {
     @Override
     public void action(Player player) {
 
-        amount = (int) (player.getSalary() * 0.10);
+        amount = (int) (player.getSalary().getSalary() * 0.10);
         player.removeCash(amount);
     }
 }

@@ -7,7 +7,7 @@ public class PayDay extends GreenSpace {
     }
 
     public void giveSalary(Player player) {
-        player.addCash(player.getSalary());
+        player.addCash(player.getSalary().getSalary());
     }
 
     @Override

@@ -50,7 +50,6 @@ public class MenuController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        gameController.gameOn();
     }
 
     @FXML

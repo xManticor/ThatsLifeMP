@@ -1,11 +1,12 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class Game {
 
-    private Player[] players;
-    private Player[] retired;
+    private ArrayList<Player> players;
+    private ArrayList<Player> retired;
     private int numPlayers;
     private String pName;
 
@@ -18,16 +19,18 @@ public class Game {
     private Path collegePath1;
     private Path careerPath1;
 
+    int turn = 0;
 
     public Game(int numPlayers) {
         this.numPlayers = numPlayers;
-        this.players = new Player[numPlayers];
-        this.retired = new Player[numPlayers];
+        this.players = new ArrayList<>();
+        this.retired = new ArrayList<>();
 
         // Generates players
         for (int i = 0; i < numPlayers; i++) {
-            players[i] = new Player();
+            players.add(new Player());
         }
+
         generateActionDeck();
         generateBlueDeck();
         generateCareerDeck();
@@ -45,8 +48,8 @@ public class Game {
         } else {
             if(collegePath1.getLastSpace().getConnector() != null) {
                 Path nextPath = collegePath1.getLastSpace().getConnector();
-                players[0].setPath(nextPath);
-                players[0].setLocation(0);
+//                players[0].setPath(nextPath);
+//                players[0].setLocation(0);
             }
         }
     }
@@ -288,15 +291,15 @@ public class Game {
     }
 
     public Player[] getPlayers() {
-        return players;
+        return players.toArray(new Player[0]);
     }
 
     public int getNumPlayers() {
-        return numPlayers;
+        return players.size();
     }
 
     public int getNumRetired() {
-        return retired.length;
+        return retired.size();
     }
 
     public Path getCareerPath1() {
@@ -305,6 +308,32 @@ public class Game {
 
     public Path getCollegePath1() {
         return collegePath1;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+
+    public Player getCurrentPlayer() {
+        if(turn > 0 && turn < getNumPlayers()) {
+            return players.get(turn);
+        } else {
+            return null;
+        }
+    }
+
+    public Player[] getOtherPlayers() {
+        ArrayList<Player> players = new ArrayList<>();
+        for(Player otherPlayer : getPlayers()) {
+            if(!getCurrentPlayer().equals(otherPlayer)) {
+                players.add(otherPlayer);
+            }
+        }
+        return players.toArray(new Player[0]);
     }
 
     /**

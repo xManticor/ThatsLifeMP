@@ -11,7 +11,7 @@
          <children>
             <ImageView fitHeight="240.0" fitWidth="291.0" layoutX="26.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@houseimg.png" />
+                  <Image url="@../img/houseimg.png" />
                </image>
             </ImageView>
             <ComboBox layoutX="102.0" layoutY="190.0" prefHeight="26.0" prefWidth="139.0" promptText="CHOOSE HOUSE" />

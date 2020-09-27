@@ -54,8 +54,8 @@ public class Player {
    * @return the amount of cash of the player
    */
 
-  public String getCareer() {
-    return career.getName();
+  public CareerCard getCareer() {
+    return this.career;
   }
 
   /**
@@ -64,9 +64,8 @@ public class Player {
    * @return the amount of salary of the player
    */
 
-  public int getSalary() { // int for now
-
-    return this.salary.getSalary();
+  public SalaryCard getSalary() { // int for now
+    return this.salary;
   }
 
   /**

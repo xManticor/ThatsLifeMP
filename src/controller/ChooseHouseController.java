@@ -34,7 +34,7 @@ public class ChooseHouseController implements Initializable {
 
     public void onEnter(ActionEvent ae) {
 
-        FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("/view/chooseHouse.fxml"));
+        FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("/view/ChooseHouse.fxml"));
 
         try {
         } catch (Exception e) {

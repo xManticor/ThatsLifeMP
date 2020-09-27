@@ -30,7 +30,7 @@ public class BlueCard extends Card {
     }
 
     public boolean isMatchWithCareer(Player player) {
-        if (this.career == player.getCareer())
+        if (this.career.equals(player.getCareer().getName()))
             return true;
         else
             return false;
@@ -46,7 +46,7 @@ public class BlueCard extends Card {
 
     public Player findPlayerCareer(Player[] otherplayers, String career) {
         for (int i = 0; i < otherplayers.length; i++) {
-            if (career == otherplayers[i].getCareer())
+            if (career.equals(otherplayers[i].getCareer().getName()))
                 return otherplayers[i];
         }
         return null;
