@@ -27,7 +27,7 @@ public class RetirementSpace extends Space {
         player.addCash(player.getHouse().getValue());
 
         //Loans with interest
-        //player.payLoan();
+        player.payLoan(player.getLoan()/25000);
 
 
     }

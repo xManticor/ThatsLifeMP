@@ -188,6 +188,7 @@ public class Game {
         careerPath4.addSpace(new PayDay("Pay Day"));
         for(int i = 0; i < 2; i++)
             careerPath4.addSpace(new OrangeSpace("Orange Space"));
+        careerPath4.addSpace(new RetirementSpace("Retirement Space"));
         return careerPath4;
     }
 
