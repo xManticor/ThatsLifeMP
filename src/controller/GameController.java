@@ -220,7 +220,6 @@ public class GameController implements Initializable {
 
     private void handleSpace(Space space) {
 
-
         if(space.getColor().equals(Color.ORANGE)) {
             ActionCard tempcard;
 
@@ -248,7 +247,6 @@ public class GameController implements Initializable {
             BlueCard tempcard;
 
             tempcard = ((BlueSpace) space).takeBlueCard(game.getBlueDeck());
-            System.out.println(tempcard.getName());
             tempcard.blueCardCondition(game.getCurrentPlayer(), game.getOtherPlayers(), tempcard.getName());
             if(tempcard.getName().equals("Lawsuit"))
                 ((Lawsuit) tempcard).action(game.getCurrentPlayer());
@@ -274,16 +272,20 @@ public class GameController implements Initializable {
 
         } else if(space.getColor().equals(Color.MAGENTA)) {
 
-            if(space.getType().equals("College Career Choice"))
-                //((CollegeCareerChoiceSpace) space).selectCareerCard()
-            else if(space.getType().equals("Job Search"))
-                //((JobSearchSpace) game.getCurrentPlayer())
-            else if(space.getType().equals("Buy A House"))
-                //game.getCurrentPlayer().
-            else if(space.getType().equals("Have A Baby"))
+            if(space.getType().equals("Have A Baby"))
                 ((HaveBabySpace) space).addPlayerChild(game.getCurrentPlayer(), game.getOtherPlayers());
             else if(space.getType().equals("Have A Twin"))
                 ((HaveTwinSpace) space).addPlayerChild(game.getCurrentPlayer(), game.getOtherPlayers());
+            else if(space.getType().equals("Graduation"))
+                ((GraduateSpace) space).graduatePlayer(game.getCurrentPlayer());
+            System.out.println(space.getType() + "<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            //else if(space.getType().equals("College Career Choice"))
+                //((CollegeCareerChoiceSpace) space).selectCareerCard()
+            //else if(space.getType().equals("Job Search"))
+                //((JobSearchSpace) game.getCurrentPlayer())
+            //else if(space.getType().equals("Buy A House"))
+                //game.getCurrentPlayer().
+
         }
     }
 

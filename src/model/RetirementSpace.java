@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 public class RetirementSpace extends Space {
 
     public RetirementSpace(String type) {
-        super(type, Color.YELLOWGREEN);
+        super(type, Color.MAGENTA);
     }
 
     public void retirePlayer(Player player) {

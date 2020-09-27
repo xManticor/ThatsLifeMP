@@ -16,6 +16,4 @@ public class Card {
     public String getDescription() {
         return description;
     }
-
-    // add toString method
 }

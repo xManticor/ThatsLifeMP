@@ -54,7 +54,7 @@ public class Game {
         collegePath.addSpace(new CollegeCareerChoiceSpace("College Career Choice"));
         for(int i = 0; i < 5; i++)
             collegePath.addSpace(new OrangeSpace("Orange Space"));
-        collegePath.addSpace(new GraduationSpace("Graduation Space", careerPath2));
+        collegePath.addSpace(new GraduateSpace("Graduation", careerPath2));
 
         return collegePath;
     }

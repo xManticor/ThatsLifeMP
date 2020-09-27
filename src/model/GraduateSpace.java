@@ -1,13 +1,13 @@
 package model;
 
-public class GraduationSpace extends MagentaSpace {
+public class GraduateSpace extends MagentaSpace {
 
-    public GraduationSpace(String type)
+    public GraduateSpace(String type)
     {
         super(type);
     }
 
-    public GraduationSpace(String type, Path connector)
+    public GraduateSpace(String type, Path connector)
     {
         super(type, connector);
     }
