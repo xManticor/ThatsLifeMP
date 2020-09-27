@@ -11,7 +11,7 @@ public class GetMarriedSpace extends MagentaSpace {
 
         if(player.isMarried() == false){
             player.setMarried(true);
-
+            System.out.println(player.isMarried() + "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<, MARRIED");
 
             for (int i = 0; i < otherPlayers.length; i++) {
                 if (player.getName() != otherPlayers[i].getName()){

@@ -1,6 +1,7 @@
 package model;
 
 public class BlueCard extends Card {
+
     String type = "Blue";
     int amount;
     String description;
@@ -25,11 +26,9 @@ public class BlueCard extends Card {
     }
 
     public void action(Player player) {
-
     }
 
     public boolean isMatchWithCareer(Player player) {
-        System.out.println(name + "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         if (this.name.equals(player.getCareer().getName()))
             return true;
         else

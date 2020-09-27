@@ -1,8 +1,8 @@
 package model;
 
 public class CareerCard extends Card {
-    String type = "Career";
-    boolean isDegreeRequired;
+    private String type = "Career";
+    private boolean isDegreeRequired;
     int maxRaise;
     int raise;
 

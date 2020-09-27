@@ -1,9 +1,9 @@
 package model;
 
 public class HouseCard extends Card {
-    String type = "House";
-    String name;
-    int value;
+    private String type = "House";
+    private String name;
+    private int value;
 
     public HouseCard(String name, int value) {
         super(name);

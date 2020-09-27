@@ -1,6 +1,7 @@
 package model;
 
 public class ActionCard extends Card {
+
     String type = "Action";
     int amount;
     String name;

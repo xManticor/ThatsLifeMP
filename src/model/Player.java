@@ -66,8 +66,12 @@ public class Player {
    * @return the amount of salary of the player
    */
 
-  public SalaryCard getSalary() { // int for now
+  public SalaryCard getSalary() {
     return this.salary;
+  }
+
+  public int getPlayerSalary() {
+    return this.salary.salary;
   }
 
   /**
@@ -76,7 +80,7 @@ public class Player {
    * @return the amount of tax due of the player
    */
 
-  public int getTaxDue() { // int for now
+  public int getTaxDue() {
 
     return this.salary.taxDue;
   }

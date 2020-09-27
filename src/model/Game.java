@@ -99,7 +99,7 @@ public class Game {
         careerPath3.addSpace(new OrangeSpace("Orange Space"));
         careerPath3.addSpace(new PayDay("Pay Day"));
         careerPath3.addSpace(new OrangeSpace("Orange Space"));
-        careerPath3.addSpace(new HaveTwinSpace("Have a Twin"));
+        careerPath3.addSpace(new HaveTwinSpace("Have A Twin"));
         careerPath3.addSpace(new OrangeSpace("Orange Space"));
         careerPath3.addSpace(new PayDay("Pay Day"));
         careerPath3.addSpace(new OrangeSpace("Orange Space"));
@@ -196,14 +196,14 @@ public class Game {
 
         Path familyPath = new Path("Family Path 1");
 
-        familyPath.addSpace(new GetMarriedSpace("Get Married Space"));
+        familyPath.addSpace(new GetMarriedSpace("Get Married"));
         for(int i = 0; i < 2; i++)
             familyPath.addSpace(new OrangeSpace("Orange Space"));
-        familyPath.addSpace(new BuyHouseSpace("Buy a House Space"));
+        familyPath.addSpace(new BuyHouseSpace("Buy a House"));
         for(int i = 0; i < 2; i++)
             familyPath.addSpace(new OrangeSpace("Orange Space"));
         familyPath.addSpace(new BlueSpace("Blue Space"));
-        familyPath.addSpace(new HaveBabySpace("Have a Baby Space"));
+        familyPath.addSpace(new HaveBabySpace("Have A Baby"));
         familyPath.addSpace(new OrangeSpace("Orange Space", careerPath3));
         return familyPath;
     }

@@ -23,9 +23,9 @@ public class ChooseHouseController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         enterButton.setDisable(true);
         ArrayList<String> choices = new ArrayList<>();
-        choices.add("Mansion");
-        choices.add("Apartment");
-        choices.add("Cabin");
+        choices.add("Mansion    - $1000000");
+        choices.add("Apartment  - $500000");
+        choices.add("Cabin      - $200000");
         comboBox.getItems().addAll(choices);
         comboBox.setOnAction(e -> {
             if(comboBox.getValue() != null) enterButton.setDisable(false);

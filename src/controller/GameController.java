@@ -220,12 +220,13 @@ public class GameController implements Initializable {
 
     private void handleSpace(Space space) {
 
+        System.out.println(space.getType());
+
         if(space.getColor().equals(Color.ORANGE)) {
             ActionCard tempcard;
 
             tempcard = ((OrangeSpace) space).takeActionCard(game.getActionDeck());
             //Displays drawn action card
-            System.out.println(tempcard.getName());
             if(tempcard.getName().equals("Collect From Bank"))
                 ((CollectFromBank) tempcard).action(game.getCurrentPlayer());
             else if(tempcard.getName().equals("Pay The Bank"))
@@ -242,6 +243,8 @@ public class GameController implements Initializable {
             else if(tempcard.getName().equals("Pay To Player"))
                 ((PayThePlayer) tempcard).action(game.getCurrentPlayer());
             */
+
+            System.out.println(tempcard.getName() + " <<<<<<<<<<<<, ACTION CARD");
 
         } else if(space.getColor().equals(Color.BLUE)) {
             BlueCard tempcard;
@@ -263,12 +266,17 @@ public class GameController implements Initializable {
             else if(tempcard.getName().equals("F1 Race"))
                 ((F1Race) tempcard).action(game.getCurrentPlayer());
 
+            System.out.println(tempcard.getName() + "<<<<<<<<<<<<, BLUE CARD");
+
         } else if(space.getColor().equals(Color.GREEN)) {
 
             if(space.getType().equals("Pay Day"))
                 ((PayDay) space).giveSalary(game.getCurrentPlayer());
             else if(space.getType().equals("Pay Raise"))
                 ((PayRaise) space).raiseSalary(game.getCurrentPlayer());
+
+            System.out.println(game.getCurrentPlayer().getPlayerSalary() + " <<<<<<<<<<<<, SALARY");
+            System.out.println(game.getCurrentPlayer().getRaiseCounter() + " <<<<<<<<<<<<, PAY RAISE");
 
         } else if(space.getColor().equals(Color.MAGENTA)) {
 
@@ -278,7 +286,8 @@ public class GameController implements Initializable {
                 ((HaveTwinSpace) space).addPlayerChild(game.getCurrentPlayer(), game.getOtherPlayers());
             else if(space.getType().equals("Graduation"))
                 ((GraduateSpace) space).graduatePlayer(game.getCurrentPlayer());
-            System.out.println(space.getType() + "<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            else if(space.getType().equals("Get Married"))
+                ((GetMarriedSpace) space).playerMarry(game.getCurrentPlayer(), game.getOtherPlayers());
             //else if(space.getType().equals("College Career Choice"))
                 //((CollegeCareerChoiceSpace) space).selectCareerCard()
             //else if(space.getType().equals("Job Search"))
