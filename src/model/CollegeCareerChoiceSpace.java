@@ -1,12 +1,10 @@
 package model;
 
-public class CollegeOrCareerChoiceSpace extends MagentaSpace {
+public class CollegeCareerChoiceSpace extends MagentaSpace {
 
-    public CollegeOrCareerChoiceSpace(String type) {
+    public CollegeCareerChoiceSpace(String type) {
         super(type);
     }
-
-    
 
     public CareerCard selectCareerCard(Deck careerDeck){
         return (CareerCard) careerDeck.drawCard();

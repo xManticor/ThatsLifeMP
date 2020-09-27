@@ -237,6 +237,7 @@ public class GameController implements Initializable {
             else if(tempcard.getName().equals("Pay To All"))
                 ((PayToAll) tempcard).action(game.getCurrentPlayer(), game.getOtherPlayers());
 
+            //ACTION CARDS THAT NEEDS TO CHOOSE PLAYER
             /*else if(tempcard.getName().equals("Collect From Player"))
                 ((CollectFromPlayer) tempcard).action(game.getCurrentPlayer());
             else if(tempcard.getName().equals("Pay To Player"))
@@ -249,16 +250,40 @@ public class GameController implements Initializable {
             tempcard = ((BlueSpace) space).takeBlueCard(game.getBlueDeck());
             System.out.println(tempcard.getName());
             tempcard.blueCardCondition(game.getCurrentPlayer(), game.getOtherPlayers(), tempcard.getName());
-            //if(tempcard.getName().equals("Lawsuit"))
-                //((Lawsuit) tempcard).
-
-
+            if(tempcard.getName().equals("Lawsuit"))
+                ((Lawsuit) tempcard).action(game.getCurrentPlayer());
+            else if(tempcard.getName().equals("Salary Tax Due"))
+                ((SalaryTaxDue) tempcard).action(game.getCurrentPlayer());
+            else if(tempcard.getName().equals("Tip The Server"))
+                ((TipTheServer) tempcard).action(game.getCurrentPlayer());
+            else if(tempcard.getName().equals("Ski Accident"))
+                ((SkiAccident) tempcard).action(game.getCurrentPlayer());
+            else if(tempcard.getName().equals("Computer Repair"))
+                ((ComputerRepair) tempcard).action(game.getCurrentPlayer());
+            else if(tempcard.getName().equals("World Cup"))
+                ((WorldCup) tempcard).action(game.getCurrentPlayer());
+            else if(tempcard.getName().equals("F1 Race"))
+                ((F1Race) tempcard).action(game.getCurrentPlayer());
 
         } else if(space.getColor().equals(Color.GREEN)) {
 
+            if(space.getType().equals("Pay Day"))
+                ((PayDay) space).giveSalary(game.getCurrentPlayer());
+            else if(space.getType().equals("Pay Raise"))
+                ((PayRaise) space).raiseSalary(game.getCurrentPlayer());
 
         } else if(space.getColor().equals(Color.MAGENTA)) {
 
+            if(space.getType().equals("College Career Choice"))
+                //((CollegeCareerChoiceSpace) space).selectCareerCard()
+            else if(space.getType().equals("Job Search"))
+                //((JobSearchSpace) game.getCurrentPlayer())
+            else if(space.getType().equals("Buy A House"))
+                //game.getCurrentPlayer().
+            else if(space.getType().equals("Have A Baby"))
+                ((HaveBabySpace) space).addPlayerChild(game.getCurrentPlayer(), game.getOtherPlayers());
+            else if(space.getType().equals("Have A Twin"))
+                ((HaveTwinSpace) space).addPlayerChild(game.getCurrentPlayer(), game.getOtherPlayers());
         }
     }
 

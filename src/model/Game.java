@@ -51,7 +51,7 @@ public class Game {
     private Path generateCollegePath1(Path careerPath2) {
         Path collegePath = new Path("College Path");
         collegePath.addSpace(new OrangeSpace("Start College"));
-        collegePath.addSpace(new CollegeOrCareerChoiceSpace("College Career Choice"));
+        collegePath.addSpace(new CollegeCareerChoiceSpace("College Career Choice"));
         for(int i = 0; i < 5; i++)
             collegePath.addSpace(new OrangeSpace("Orange Space"));
         collegePath.addSpace(new GraduationSpace("Graduation Space", careerPath2));
@@ -99,7 +99,7 @@ public class Game {
         careerPath3.addSpace(new OrangeSpace("Orange Space"));
         careerPath3.addSpace(new PayDay("Pay Day"));
         careerPath3.addSpace(new OrangeSpace("Orange Space"));
-        careerPath3.addSpace(new HaveTwinSpace("Have a Twin!"));
+        careerPath3.addSpace(new HaveTwinSpace("Have a Twin"));
         careerPath3.addSpace(new OrangeSpace("Orange Space"));
         careerPath3.addSpace(new PayDay("Pay Day"));
         careerPath3.addSpace(new OrangeSpace("Orange Space"));
