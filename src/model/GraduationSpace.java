@@ -1,7 +1,7 @@
 package model;
 
-public class GraduationSpace extends MagentaSpace
-{
+public class GraduationSpace extends MagentaSpace {
+
     public GraduationSpace(String type)
     {
         super(type);

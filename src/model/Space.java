@@ -52,4 +52,7 @@ abstract public class Space {
         return "";
     }
 
+    public int getNumPlayers() {
+        return players.size();
+    }
 }

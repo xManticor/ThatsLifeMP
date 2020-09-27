@@ -2,11 +2,15 @@ package model;
 
 public class CollectFromAll extends ActionCard {
 
+    public CollectFromAll(String name) {
+        super(name);
+    }
+
     public CollectFromAll(String name, int amount) {
         super(name, amount);
     }
 
-    public void action(int amount, Player receiver, Player[] payers) {
+    public void action(Player receiver, Player[] payers) {
 
         int numPayers = 0;
 

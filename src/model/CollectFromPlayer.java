@@ -2,11 +2,15 @@ package model;
 
 public class CollectFromPlayer extends ActionCard implements PlayerToPlayer {
 
+    public CollectFromPlayer(String name) {
+        super(name);
+    }
+
     public CollectFromPlayer(String name, int amount) {
         super(name, amount);
     }
 
-    public void action(int amount, Player payer, Player receiver) {
+    public void action(Player payer, Player receiver) {
         while(payer.getCash() < amount){
             payer.addLoan();
             payer.addCash(20000);

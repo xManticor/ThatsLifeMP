@@ -2,12 +2,15 @@ package model;
 
 public class PayToAll extends ActionCard {
 
+    public PayToAll(String name) {
+        super(name);
+    }
+
     public PayToAll(String name, int amount) {
         super(name, amount);
     }
 
-    // Not sure kung gagana pero walang errors HAHHA
-    public void action(int amount, Player payer, Player[] receivers) {
+    public void action(Player payer, Player[] receivers) {
 
         int numReceivers = 0;
 

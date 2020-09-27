@@ -219,11 +219,43 @@ public class GameController implements Initializable {
     }
 
     private void handleSpace(Space space) {
+
+
         if(space.getColor().equals(Color.ORANGE)) {
+            ActionCard tempcard;
+
+            tempcard = ((OrangeSpace) space).takeActionCard(game.getActionDeck());
+            //Displays drawn action card
+            System.out.println(tempcard.getName());
+            if(tempcard.getName().equals("Collect From Bank"))
+                ((CollectFromBank) tempcard).action(game.getCurrentPlayer());
+            else if(tempcard.getName().equals("Pay The Bank"))
+                ((PayTheBank) tempcard).action(game.getCurrentPlayer());
+
+            else if(tempcard.getName().equals("Collect From All"))
+                ((CollectFromAll) tempcard).action(game.getCurrentPlayer(), game.getOtherPlayers());
+            else if(tempcard.getName().equals("Pay To All"))
+                ((PayToAll) tempcard).action(game.getCurrentPlayer(), game.getOtherPlayers());
+
+            /*else if(tempcard.getName().equals("Collect From Player"))
+                ((CollectFromPlayer) tempcard).action(game.getCurrentPlayer());
+            else if(tempcard.getName().equals("Pay To Player"))
+                ((PayThePlayer) tempcard).action(game.getCurrentPlayer());
+            */
 
         } else if(space.getColor().equals(Color.BLUE)) {
+            BlueCard tempcard;
+
+            tempcard = ((BlueSpace) space).takeBlueCard(game.getBlueDeck());
+            System.out.println(tempcard.getName());
+            tempcard.blueCardCondition(game.getCurrentPlayer(), game.getOtherPlayers(), tempcard.getName());
+            //if(tempcard.getName().equals("Lawsuit"))
+                //((Lawsuit) tempcard).
+
+
 
         } else if(space.getColor().equals(Color.GREEN)) {
+
 
         } else if(space.getColor().equals(Color.MAGENTA)) {
 
