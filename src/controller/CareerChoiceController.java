@@ -23,17 +23,17 @@ public class CareerChoiceController implements Initializable {
     @FXML
     private Button enterButton;
 
+    private String type; //
     private Player player;
     private Deck careerDeck, salaryDeck;
     private CareerCard careerCard1, careerCard2;
     private SalaryCard salaryCard1, salaryCard2;
 
-    public CareerChoiceController(Player player, Deck careerDeck, Deck salaryDeck) {
+    public CareerChoiceController(String type, Player player, Deck careerDeck, Deck salaryDeck) {
+        this.type = type; //
         this.player = player;
         this.careerDeck = careerDeck;
         this.salaryDeck = salaryDeck;
-        careerCard1 = (CareerCard) careerDeck.drawCard();
-        careerCard2 = (CareerCard) careerDeck.drawCard();
         salaryCard1 = (SalaryCard) salaryDeck.drawCard();
         salaryCard2 = (SalaryCard) salaryDeck.drawCard();
     }
@@ -42,6 +42,17 @@ public class CareerChoiceController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<String> careerChoices = new ArrayList<>();
         ArrayList<String> salaryChoices = new ArrayList<>();
+        System.out.println(player.getName() + ": " + player.hasCollegeDegree());
+        if(type.equals("College Career Choice") || player.hasCollegeDegree()) {
+
+            careerCard1 = (CareerCard) careerDeck.drawCard();
+            careerCard2 = (CareerCard) careerDeck.drawCard();
+
+        }
+        else{
+            careerCard1 = (CareerCard) careerDeck.drawDegreeCard();
+            careerCard2 = (CareerCard) careerDeck.drawDegreeCard();
+        }
 
         careerChoices.add(careerCard1.getName() + " - " + careerCard1.getMaxRaise());
         careerChoices.add(careerCard2.getName() + " - " + careerCard2.getMaxRaise());

@@ -21,25 +21,25 @@ public class CareerCard extends Card {
     }
 
     public boolean isDegreeRequired() {
-        if (this.name == "Lawyer")
+        if (this.name.equals("Lawyer"))
             this.isDegreeRequired = true;
 
-        if (this.name == "Accountant")
+        if (this.name.equals("Accountant"))
             this.isDegreeRequired = true;
 
-        if (this.name == "Computer Consultant")
+        if (this.name.equals("Computer Consultant"))
             this.isDegreeRequired = true;
 
-        if (this.name == "Doctor")
+        if (this.name.equals("Doctor"))
             this.isDegreeRequired = true;
 
-        if (this.name == "Server")
+        if (this.name.equals("Server"))
             this.isDegreeRequired = false;
 
-        if (this.name == "Racecar Driver")
+        if (this.name.equals("Racecar Driver"))
             this.isDegreeRequired = false;
 
-        if (this.name == "Athlete")
+        if (this.name.equals("Athlete"))
             this.isDegreeRequired = false;
 
         return this.isDegreeRequired;

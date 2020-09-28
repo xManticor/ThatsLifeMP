@@ -340,14 +340,21 @@ public class GameController implements Initializable {
                 ((GraduateSpace) space).graduatePlayer(game.getCurrentPlayer());
             else if(space.getType().equals("Get Married"))
                 ((GetMarriedSpace) space).playerMarry(game.getCurrentPlayer(), game.getOtherPlayers());
-            else if(space.getType().equals("College Career Choice")) {
+            else if(space.getType().equals("College Career Choice") || space.getType().equals("Career Choice Space")) {
                 Stage careerChoiceStage = new Stage();
                 careerChoiceStage.initStyle(StageStyle.UNDECORATED);
                 careerChoiceStage.initModality(Modality.APPLICATION_MODAL);
-
+                System.out.println(game.getCurrentPlayer().getName() + ": " + game.getCurrentPlayer().hasCollegeDegree());
                 FXMLLoader careerChoiceLoader = new FXMLLoader(getClass().getResource("/view/CareerChoice.fxml"));
-                CareerChoiceController careerChoiceController = new CareerChoiceController(game.getCurrentPlayer(), game.getCareerDeck(), game.getSalaryDeck());
-                careerChoiceLoader.setController(careerChoiceController);
+                if(space.getType().equals("College Career Choice")) {
+                    CareerChoiceController careerChoiceController = new CareerChoiceController("College Career Choice", game.getCurrentPlayer(), game.getCareerDeck(), game.getSalaryDeck());
+                    careerChoiceLoader.setController(careerChoiceController);
+                }
+                else {
+                    game.getCareerDeck().addCard(game.getCurrentPlayer().getCareer());
+                    CareerChoiceController careerChoiceController = new CareerChoiceController("Career Choice Space", game.getCurrentPlayer(), game.getCareerDeck(), game.getSalaryDeck());
+                    careerChoiceLoader.setController(careerChoiceController);
+                }
 
                 try{
                     careerChoiceStage.setScene(new Scene(careerChoiceLoader.load()));

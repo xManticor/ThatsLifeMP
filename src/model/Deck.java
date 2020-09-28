@@ -24,18 +24,25 @@ public class Deck {
     return name;
   }
 
-  public void displayTopCard(){
-    System.out.println(cards.get(0).getName());
-  }
-  public void display2TopCards(){
-    System.out.println(cards.get(0).getName());
-    System.out.println(cards.get(1).getName());
-  }
-
   public Card drawCard() {
     Card tempcard = cards.get(0);
     cards.remove(0);
     return tempcard;
+  }
+
+  public Card drawDegreeCard(){
+    Card tempcard;
+    for(int i = 0; i < cards.size(); i++) {
+      System.out.println(!((CareerCard) cards.get(i)).isDegreeRequired() + "<<<<<<<<<<<<<<<<<" + cards.get(i).getName());
+      if(!((CareerCard) cards.get(i)).isDegreeRequired()) {
+        System.out.println("GOES IN <<<<<<<<<");
+        tempcard = cards.get(i); // Should not go here
+         cards.remove(i);
+        return tempcard;
+      }
+    }
+    System.out.println("WHYYYYYYYYY");
+    return cards.get(0);
   }
 
   public Card draw2ndCard(){
@@ -43,6 +50,10 @@ public class Deck {
     temp2card = cards.get(1);
     cards.remove(1);
     return temp2card;
+  }
+
+  public Card drawTopCard () {
+    return cards.get(0);
   }
 
   public String toString() {

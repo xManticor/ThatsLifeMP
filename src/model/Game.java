@@ -124,7 +124,7 @@ public class Game {
         changeCareerPath1.addSpace(new CareerChoice("Career Choice Space"));
         for(int i = 0; i < 2; i++)
             changeCareerPath1.addSpace(new OrangeSpace("Orange Space"));
-        changeCareerPath1.addSpace(new PayDay("Pay Raise"));
+        changeCareerPath1.addSpace(new PayDay("Pay Day"));
         for(int i = 0; i < 2; i++)
             changeCareerPath1.addSpace(new OrangeSpace("Orange Space"));
         changeCareerPath1.addSpace(new BlueSpace("Blue Space"));
@@ -333,6 +333,8 @@ public class Game {
     public Deck getSalaryDeck() {
         return salaryDeck;
     }
+
+
 
     /**
      * This method generates number that ranges from 1000 to 10000, then returns it.
