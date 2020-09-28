@@ -1,4 +1,9 @@
 package controller;
 
-public class GameResultController {
+import javafx.fxml.Initializable;
+
+public class GameResultController implements Initializable {
+
+
+
 }
