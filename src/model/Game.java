@@ -346,7 +346,11 @@ public class Game {
      */
 
     public int generateRandom(int lb, int ub) {
-
         return (int) (Math.random() * (ub - lb + 1) + lb);
+    }
+
+    public void retirePlayer(Player player) {
+        players.remove(player);
+        retired.add(player);
     }
 }

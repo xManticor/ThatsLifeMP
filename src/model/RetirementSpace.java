@@ -11,13 +11,13 @@ public class RetirementSpace extends Space {
     public void retirePlayer(Player player) {
         addPlayer(player);
         //Retirement pay
-        if(player.getName().equals(getPlayers()[0].getName())) {
+        if(player.getName().equals(getPlayers().get(0).getName())) {
                 player.addCash(100000);
             }
-        else if(player.getName().equals(getPlayers()[1].getName())) {
+        else if(player.getName().equals(getPlayers().get(1).getName())) {
                 player.addCash(50000);
             }
-        else if(player.getName().equals(getPlayers()[2].getName())) {
+        else if(player.getName().equals(getPlayers().get(2).getName())) {
                 player.addCash(20000);
             }
         //Number of children

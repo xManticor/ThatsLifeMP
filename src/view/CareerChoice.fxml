@@ -5,25 +5,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="295.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CareerChoice">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutX="21.0" layoutY="20.0" prefHeight="255.0" prefWidth="400.0" style="-fx-background-color: #ABEBC6;">
+      <Pane layoutX="21.0" layoutY="20.0" style="-fx-background-color: #ABEBC6;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
-            <Label layoutX="54.0" layoutY="183.0" prefHeight="17.0" prefWidth="90.0" text="CAREER CHOICE">
+            <Label layoutX="26.0" layoutY="183.0" prefHeight="17.0" prefWidth="90.0" text="CAREER CHOICE">
                <font>
                   <Font name="3ds Regular" size="12.0" />
                </font></Label>
-            <ComboBox layoutX="24.0" layoutY="204.0" prefWidth="150.0" />
-            <ComboBox layoutX="216.0" layoutY="204.0" prefWidth="150.0" />
-            <Label layoutX="246.0" layoutY="183.0" prefHeight="17.0" prefWidth="90.0" text="SALARY CHOICE">
+            <ComboBox fx:id="careerCombo" layoutX="3.0" layoutY="204.0" prefWidth="150.0" promptText="Choose a Career" />
+            <ComboBox fx:id="salaryCombo" layoutX="200.0" layoutY="204.0" prefWidth="150.0" promptText="Choose a Salary" />
+            <Label layoutX="237.0" layoutY="183.0" prefHeight="17.0" prefWidth="90.0" text="SALARY CHOICE">
                <font>
                   <Font name="3ds Regular" size="12.0" />
                </font></Label>
-            <ImageView fitHeight="156.0" fitWidth="226.0" layoutX="87.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="156.0" fitWidth="226.0" layoutX="62.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/careerimg.png" />
                </image>
             </ImageView>
+            <Button layoutX="130.0" layoutY="242.0" mnemonicParsing="false" onAction="#onClickEnter" prefHeight="25.0" prefWidth="114.0" text="Enter" />
          </children>
       </Pane>
    </children>

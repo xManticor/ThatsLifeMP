@@ -160,8 +160,15 @@ public class Player {
   }
 
   public void setPath(Path path) {
+    if(this.path != null) {
+      for(Space space : this.path.getSpaces()) {
+        space.removePlayer(this);
+      }
+    }
     this.path = path;
     this.location = 0;
+    // adds player to the start of the path
+//    this.path.getSpace(0).addPlayer(this);
   }
 
   public void addChild(int child){

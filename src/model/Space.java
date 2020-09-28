@@ -40,8 +40,8 @@ abstract public class Space {
         return type;
     }
 
-    public Player[] getPlayers() {
-        return players.toArray(new Player[0]);
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 
     public Color getColor() {

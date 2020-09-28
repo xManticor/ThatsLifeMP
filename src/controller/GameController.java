@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -102,7 +104,7 @@ public class GameController implements Initializable {
                     player.setSalary((SalaryCard) game.getSalaryDeck().drawCard());
                 }
                 player.setPath(selectedPath);
-                player.getPath().getSpace(player.getLocation()).addPlayer(player);
+                player.getPath().getSpaces()[game.getCurrentPlayer().getLocation()].addPlayer(player);
             }
         }
 
@@ -111,36 +113,49 @@ public class GameController implements Initializable {
     }
 
     @FXML
-    public void onClickMove(ActionEvent ae) {
+    public void onClickMove(ActionEvent ae) throws IOException {
+        if(moveButton.getText().equals("End Game")) {
+            Stage gameResultStage = new Stage();
+
+//            gameResultStage.setScene();
+
+            gameResultStage.showAndWait();
+
+            Stage stage = (Stage) ((Node) ae.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Menu.fxml"))));
+            stage.setMaximized(false);
+        }
         Random random = new Random();
         int dice = random.nextInt(10) + 1;
         System.out.println(game.getCurrentPlayer().getName() + " rolled " + dice);
 
         int diceLeft = 0;
         boolean isNextPath = false;
-        Space space = null;
+        Space space = game.getCurrentPlayer().getPath().getSpace(Math.min(game.getCurrentPlayer().getLocation(), game.getCurrentPlayer().getPath().getNSpaces() - 1));
 
         System.out.println(game.getCurrentPlayer().getLocation());
-        game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()).removePlayer(game.getCurrentPlayer());
 
+        space.removePlayer(game.getCurrentPlayer());
         for(int i = 0; i < dice; i++) {
-            game.getCurrentPlayer().setLocation(game.getCurrentPlayer().getLocation() + 1);
-            System.out.println(game.getCurrentPlayer().getPath().getNSpaces() + " - " + game.getCurrentPlayer().getLocation());
-
-            // stops if player reached the end of the Path
-            if(game.getCurrentPlayer().getPath().getNSpaces() - 1 == game.getCurrentPlayer().getLocation()) {
+//            System.out.println("PLAYER PATH: " + game.getCurrentPlayer().getPath().getName() + "| PLAYER LOCATION: " + game.getCurrentPlayer().getLocation());
+            if(game.getCurrentPlayer().getPath().getNSpaces() - 1 != game.getCurrentPlayer().getLocation()) {
+                game.getCurrentPlayer().setLocation(game.getCurrentPlayer().getLocation() + 1);
+            } else {
+                // stops if player reached the end of the Path
                 isNextPath = true;
                 diceLeft = dice - i - 2;
                 break;
             }
-            space = game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation());
+
+            space = game.getCurrentPlayer().getPath().getSpace(Math.min(game.getCurrentPlayer().getLocation(), game.getCurrentPlayer().getPath().getNSpaces() - 1));
             // stops if player is in magenta space
-            if(game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()).getColor().equals(Color.MAGENTA)) {
+            if(space.getColor().equals(Color.MAGENTA)) {
                 break;
             }
         }
 
         if(isNextPath) {
+            System.out.println("NEXT PATH ACTIVATED!!! " + game.getCurrentPlayer().getPath().getLastSpace().getConnector());
             if(game.getCurrentPlayer().getPath().getLastSpace().getConnector() != null) {
                 Path nextPath = game.getCurrentPlayer().getPath().getLastSpace().getConnector();
                 game.getCurrentPlayer().setPath(nextPath);
@@ -173,7 +188,9 @@ public class GameController implements Initializable {
 
                 askPathStage.showAndWait();
                 Path selectedPath = ((AskPathController) askPathLoader.getController()).getPath();
+                game.getCurrentPlayer().getPath().getSpaces()[game.getCurrentPlayer().getPath().getNSpaces() - 1].removePlayer(game.getCurrentPlayer());
                 game.getCurrentPlayer().setPath(selectedPath);
+                game.getCurrentPlayer().getPath().getSpaces()[game.getCurrentPlayer().getLocation()].addPlayer(game.getCurrentPlayer());
 
                 if(game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()).getColor().equals(Color.MAGENTA)) {
                     // activate magenta space
@@ -202,20 +219,31 @@ public class GameController implements Initializable {
                     game.getHouseDeck().addCard(game.getCurrentPlayer().getHouse());
                     game.getCurrentPlayer().setHouse(null);
                 }
+                game.retirePlayer(game.getCurrentPlayer());
             }
         } else {
-            handleSpace(game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()));
+            System.out.println("HANDLING SPACE");
+            handleSpace(space);
         }
 
-        game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()).addPlayer(game.getCurrentPlayer());
+
+        System.out.println(game.getNumPlayers() + " " + game.getNumRetired());
+
+        // add only if the player hasn't been added there
+        if(!space.getPlayers().contains(game.getCurrentPlayer()))
+            space.addPlayer(game.getCurrentPlayer());
 
         game.setTurn(game.getTurn() + 1);
-        if(game.getTurn() == game.getNumPlayers()) {
+        if(game.getTurn() >= game.getNumPlayers()) {
             game.setTurn(0);
         }
 
-        updatePayLoanButton();
-        refreshScreen();
+        if(game.getNumPlayers() == 0) {
+            moveButton.setText("End Game");
+        } else{
+            updatePayLoanButton();
+            refreshScreen();
+        }
     }
 
     private void handleSpace(Space space) {
@@ -290,9 +318,11 @@ public class GameController implements Initializable {
                 ((GetMarriedSpace) space).playerMarry(game.getCurrentPlayer(), game.getOtherPlayers());
             else if(space.getType().equals("College Career Choice")) {
                 Stage careerChoiceStage = new Stage();
+                careerChoiceStage.initStyle(StageStyle.UNDECORATED);
+                careerChoiceStage.initModality(Modality.APPLICATION_MODAL);
 
-                FXMLLoader careerChoiceLoader = new FXMLLoader(getClass().getResource("/view/CareerChoice"));
-                CareerChoiceController careerChoiceController = new CareerChoiceController();
+                FXMLLoader careerChoiceLoader = new FXMLLoader(getClass().getResource("/view/CareerChoice.fxml"));
+                CareerChoiceController careerChoiceController = new CareerChoiceController(game.getCurrentPlayer(), game.getCareerDeck(), game.getSalaryDeck());
                 careerChoiceLoader.setController(careerChoiceController);
 
                 try{
@@ -305,8 +335,13 @@ public class GameController implements Initializable {
             }
             //else if(space.getType().equals("Job Search"))
                 //((JobSearchSpace) game.getCurrentPlayer())
+                // show 1 career card then ask user to keep or not
+                // show 1 salary card then ask user to keep or not
             else if(space.getType().equals("Buy A House")) {
                 Stage chooseHouseStage = new Stage();
+                chooseHouseStage.initStyle(StageStyle.UNDECORATED);
+                chooseHouseStage.initModality(Modality.APPLICATION_MODAL);
+
                 FXMLLoader chooseHouseLoader = new FXMLLoader(getClass().getResource("/view/ChooseHouse.fxml"));
                 ChooseHouseController chooseHouseController = new ChooseHouseController(game.getHouseDeck());
                 chooseHouseLoader.setController(chooseHouseController);
@@ -322,9 +357,58 @@ public class GameController implements Initializable {
                 game.getCurrentPlayer().removeCash(houseCard.getValue());
                 game.getCurrentPlayer().setHouse(houseCard);
             }
+            else if(space.getType().equals("Which Path?")) {
+                Path path1 = ((WhichPathSpace) game.getCurrentPlayer().getPath().getLastSpace()).getPath1();
+                Path path2 = ((WhichPathSpace) game.getCurrentPlayer().getPath().getLastSpace()).getPath2();
 
+                // ask for path
+                Stage askPathStage = new Stage();
+                askPathStage.initStyle(StageStyle.UNDECORATED);
+                askPathStage.initModality(Modality.APPLICATION_MODAL);
 
+                FXMLLoader askPathLoader = new FXMLLoader(getClass().getResource("/view/AskPath.fxml"));
 
+                try {
+                    askPathStage.setScene(new Scene(askPathLoader.load()));
+                    ((AskPathController) askPathLoader.getController()).setPaths(path1, path2);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                askPathStage.showAndWait();
+                Path selectedPath = ((AskPathController) askPathLoader.getController()).getPath();
+                game.getCurrentPlayer().getPath().getSpaces()[game.getCurrentPlayer().getPath().getNSpaces() - 1].removePlayer(game.getCurrentPlayer());
+                game.getCurrentPlayer().setPath(selectedPath);
+                game.getCurrentPlayer().getPath().getSpaces()[game.getCurrentPlayer().getLocation()].addPlayer(game.getCurrentPlayer());
+
+                if(game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()).getColor().equals(Color.MAGENTA)) {
+                    // activate magenta space
+                    handleSpace(game.getCurrentPlayer().getPath().getSpace(game.getCurrentPlayer().getLocation()));
+                }
+            } else if(space.getType().equals("Retirement Space")) {
+                game.getCurrentPlayer().setRetired(true);
+                game.getCurrentPlayer().setPath(null);
+                if(game.getCurrentPlayer().getCareer() != null) {
+                    game.getCareerDeck().addCard(game.getCurrentPlayer().getCareer());
+                    game.getCurrentPlayer().setCareer(null);
+                }
+
+                if(game.getCurrentPlayer().getSalary() != null) {
+                    game.getSalaryDeck().addCard(game.getCurrentPlayer().getSalary());
+                    game.getCurrentPlayer().setSalary(null);
+                }
+
+                // pay all loans
+                game.getCurrentPlayer().payLoan(game.getCurrentPlayer().getLoan() / 25000);
+
+                // sell house
+                if(game.getCurrentPlayer().getHouse() != null) {
+                    game.getCurrentPlayer().addCash(game.getCurrentPlayer().getHouse().getValue());
+                    game.getHouseDeck().addCard(game.getCurrentPlayer().getHouse());
+                    game.getCurrentPlayer().setHouse(null);
+                }
+                game.retirePlayer(game.getCurrentPlayer());
+            }
         }
     }
 
@@ -431,11 +515,6 @@ public class GameController implements Initializable {
         drawCareerPath4(careerPath4, x, y, gc);
 
         x -= 7 * 50;
-
-        gc.setStroke(Color.BLACK);
-        gc.strokeRect(x, y, 150, 150);
-
-        // retirement
     }
 
     private void drawCollegePath1(Path collegePath1, double x, double y, GraphicsContext gc) {
