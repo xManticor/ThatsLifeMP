@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * The game class, this class contains all the generations of the cards, players and spaces.
+ */
 public class Game {
 
     private ArrayList<Player> players;
@@ -19,6 +22,11 @@ public class Game {
 
     int turn = 0;
 
+    /**
+     * Game constructor, this is where player, retired players arrays, cards and paths are created.
+     *
+     * @param numPlayers
+     */
     public Game(int numPlayers) {
         this.players = new ArrayList<>();
         this.retired = new ArrayList<>();
@@ -36,6 +44,9 @@ public class Game {
         generatePaths();
     }
 
+    /**
+     * The method of generated paths.
+     */
     private void generatePaths() {
         Path careerPath4 = generateCareerPath4();
         Path familyPath2 = generateFamilyPath2(careerPath4);
@@ -48,6 +59,11 @@ public class Game {
         careerPath1 = generateCareerPath1(careerPath2);
     }
 
+    /**
+     * This methods generate the college path 1
+     * @param careerPath2 the connector
+     * @return Path
+     */
     private Path generateCollegePath1(Path careerPath2) {
         Path collegePath = new Path("College Path");
         collegePath.addSpace(new OrangeSpace("Start College"));
@@ -58,7 +74,11 @@ public class Game {
 
         return collegePath;
     }
-
+    /**
+     * This methods generate the career path 1
+     * @param careerPath2 the connector
+     * @return Path
+     */
     private Path generateCareerPath1(Path careerPath2) {
         Path careerPath1 = new Path("Career Path");
         careerPath1.addSpace(new OrangeSpace("Start Career"));
@@ -66,7 +86,12 @@ public class Game {
         careerPath1.addSpace(new OrangeSpace("Orange Space", careerPath2));
         return careerPath1;
     }
-
+    /**
+     * This methods generate the college path 1
+     * @param familyPath1 the connector
+     * @param changeCareerPath1 2nd connector
+     * @return Path
+     */
     private Path generateCareerPath2(Path familyPath1, Path changeCareerPath1) {
         Path careerPath2 = new Path("Career Path");
         careerPath2.addSpace(new OrangeSpace("Orange Space"));
@@ -81,7 +106,12 @@ public class Game {
         careerPath2.addSpace(new WhichPathSpace("Which Path?", familyPath1, changeCareerPath1));
         return careerPath2;
     }
-
+    /**
+     * This methods generate the career path 3
+     * @param familyPath2 the connector
+     * @param changeCareerPath2 2nd connector
+     * @return Path
+     */
     private Path generateCareerPath3(Path familyPath2, Path changeCareerPath2) {
         Path careerPath3 = new Path("Career Path 3");
 
@@ -117,7 +147,11 @@ public class Game {
         careerPath3.addSpace(new WhichPathSpace("Which Path?", familyPath2, changeCareerPath2));
         return careerPath3;
     }
-
+    /**
+     * This methods generate the change career path 1
+     * @param careerPath3 the connector
+     * @return Path
+     */
     private Path generateChangeCareerPath1(Path careerPath3){
         Path changeCareerPath1 = new Path("Change Career Path 1");
 
@@ -143,7 +177,11 @@ public class Game {
 
         return changeCareerPath1;
     }
-
+    /**
+     * This methods generate the career path 2
+     * @param careerPath4 the connector
+     * @return Path
+     */
     private Path generateChangeCareerPath2(Path careerPath4) {
         Path changeCareerPath2 = new Path("Change Career Path 2");
         changeCareerPath2.addSpace(new CareerChoice("Career Choice Space"));
@@ -158,7 +196,11 @@ public class Game {
         changeCareerPath2.addSpace(new OrangeSpace("Orange Space", careerPath4));
         return changeCareerPath2;
     }
-
+    /**
+     * This methods generate the family path 2
+     * @param careerPath4 the connector
+     * @return Path
+     */
     private Path generateFamilyPath2(Path careerPath4) {
 
         Path familyPath2 = new Path("Family Path 2");
@@ -178,7 +220,10 @@ public class Game {
         familyPath2.addSpace(new OrangeSpace("Orange Space", careerPath4));
         return familyPath2;
     }
-
+    /**
+     * This methods generate the career path 4
+     * @return Path
+     */
     private Path generateCareerPath4(){
 
         Path careerPath4 = new Path("Career Path 4");
@@ -191,7 +236,11 @@ public class Game {
         careerPath4.addSpace(new RetirementSpace("Retirement Space"));
         return careerPath4;
     }
-
+    /**
+     * This methods generate the family path 1
+     * @param careerPath3 the connector
+     * @return Path
+     */
     private Path generateFamilyPath1(Path careerPath3) {
 
         Path familyPath = new Path("Family Path 1");
@@ -208,6 +257,9 @@ public class Game {
         return familyPath;
     }
 
+    /**
+     * This method generates all the action cards
+     */
     public void generateActionDeck() {
 
         for (int i = 0; i < 20; i++) // 20
@@ -225,7 +277,9 @@ public class Game {
 
         Collections.shuffle(actionDeck.getDeck());
     }
-
+    /**
+     * This method generates all the blue cards
+     */
     public void generateBlueDeck() {
 
         blueDeck.addCard(new Lawsuit("Lawyer"));
@@ -238,7 +292,9 @@ public class Game {
 
         Collections.shuffle(blueDeck.getDeck());
     }
-
+    /**
+     * This method generates all the career cards
+     */
     public void generateCareerDeck() {
 
         careerDeck.addCard(new CareerCard("Lawyer", generateRandom(5, 8), true));
@@ -251,7 +307,9 @@ public class Game {
 
         Collections.shuffle(careerDeck.getDeck());
     }
-
+    /**
+     * This method generates all the salary cards
+     */
     public void generateSalaryDeck() {
 
         for (int i = 0; i < 10; i++)
@@ -259,7 +317,9 @@ public class Game {
 
         Collections.shuffle(salaryDeck.getDeck());
     }
-
+    /**
+     * This method generates all the house cards
+     */
     public void generateHouseDeck() {
         for (int i = 0; i < 3; i++) {
             houseDeck.addCard(new HouseCard("Mansion", 100000));
@@ -268,38 +328,71 @@ public class Game {
         }
     }
 
+    /**
+     * This method returns all the players in array
+     * @return Player[]
+     */
     public Player[] getPlayers() {
         return players.toArray(new Player[0]);
     }
-
+    /**
+     * This method returns all the retired players in array
+     * @return Player[]
+     */
     public Player[] getRetiredPlayers() {
         return retired.toArray(new Player[0]);
     }
 
+    /**
+     * This method returns the number of players
+     * @return number of players
+     */
     public int getNumPlayers() {
         return players.size();
     }
-
+    /**
+     * This method returns the number of retired players
+     * @return number of retired players
+     */
     public int getNumRetired() {
         return retired.size();
     }
 
+    /**
+     * This method gets the career path 1
+     * @return Path
+     */
     public Path getCareerPath1() {
         return careerPath1;
-    }
+    } /**
+     * This method gets the college path 1
+     * @return Path
+     */
 
     public Path getCollegePath1() {
         return collegePath1;
     }
 
+    /**
+     * This returns the turn
+     * @return turn
+     */
     public int getTurn() {
         return turn;
     }
 
+    /**
+     * This method sets the turn
+     * @param turn the turn
+     */
     public void setTurn(int turn) {
         this.turn = turn;
     }
 
+    /**
+     * This player gets the current player
+     * @return Player
+     */
     public Player getCurrentPlayer() {
         if(turn >= 0 && turn < getNumPlayers()) {
             return players.get(turn);
@@ -307,7 +400,10 @@ public class Game {
             return null;
         }
     }
-
+    /**
+     * This player gets the other other players
+     * @return other players
+     */
     public Player[] getOtherPlayers() {
         ArrayList<Player> players = new ArrayList<>();
         for(Player otherPlayer : getPlayers()) {
@@ -318,22 +414,38 @@ public class Game {
         return players.toArray(new Player[0]);
     }
 
+    /**
+     * This method returns the house deck
+     * @return Deck
+     */
     public Deck getHouseDeck() {
         return houseDeck;
     }
-
+    /**
+     * This method returns the career deck
+     * @return Deck
+     */
     public Deck getCareerDeck() {
         return careerDeck;
     }
-
+    /**
+     * This method returns the blue deck
+     * @return Deck
+     */
     public Deck getBlueDeck() {
         return blueDeck;
     }
-
+    /**
+     * This method returns the action deck
+     * @return Deck
+     */
     public Deck getActionDeck() {
         return actionDeck;
     }
-
+    /**
+     * This method returns the salary deck
+     * @return Deck
+     */
     public Deck getSalaryDeck() {
         return salaryDeck;
     }
@@ -349,7 +461,10 @@ public class Game {
     public int generateRandom(int lb, int ub) {
         return (int) (Math.random() * (ub - lb + 1) + lb);
     }
-
+    /**
+     * This method removes the player then adds it to the list of retired players.
+     *
+     */
     public void retirePlayer(Player player) {
         players.remove(player);
         retired.add(player);
