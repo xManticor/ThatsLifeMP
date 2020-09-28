@@ -211,7 +211,7 @@ public class Game {
     public void generateActionDeck() {
 
         for (int i = 0; i < 20; i++) // 20
-            actionDeck.addCard(new CollectFromBank("Collect From Bank", generateRandom(1000, 35000)));
+            actionDeck.addCard(new CollectFromBank("Collect From Bank", generateRandom(25000, 80000)));
         for (int i = 0; i < 20; i++) //20
             actionDeck.addCard(new PayTheBank("Pay The Bank", generateRandom(1000, 20000)));
         for (int i = 0; i < 3; i++) // 3
@@ -262,14 +262,18 @@ public class Game {
 
     public void generateHouseDeck() {
         for (int i = 0; i < 3; i++) {
-            houseDeck.addCard(new HouseCard("Mansion", 1000000));
-            houseDeck.addCard(new HouseCard("Apartment", 500000));
-            houseDeck.addCard(new HouseCard("Cabin", 200000));
+            houseDeck.addCard(new HouseCard("Mansion", 100000));
+            houseDeck.addCard(new HouseCard("Apartment", 50000));
+            houseDeck.addCard(new HouseCard("Cabin", 20000));
         }
     }
 
     public Player[] getPlayers() {
         return players.toArray(new Player[0]);
+    }
+
+    public Player[] getRetiredPlayers() {
+        return retired.toArray(new Player[0]);
     }
 
     public int getNumPlayers() {

@@ -116,8 +116,16 @@ public class GameController implements Initializable {
     public void onClickMove(ActionEvent ae) throws IOException {
         if(moveButton.getText().equals("End Game")) {
             Stage gameResultStage = new Stage();
+            gameResultStage.initModality(Modality.APPLICATION_MODAL);
 
-//            gameResultStage.setScene();
+            FXMLLoader gameResultLoader = new FXMLLoader(getClass().getResource("/view/GameResult.fxml"));
+            GameResultController gameResultController = new GameResultController(game.getRetiredPlayers());
+            gameResultLoader.setController(gameResultController);
+            try {
+                gameResultStage.setScene(new Scene(gameResultLoader.load()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             gameResultStage.showAndWait();
 
@@ -254,6 +262,20 @@ public class GameController implements Initializable {
             ActionCard tempcard;
 
             tempcard = ((OrangeSpace) space).takeActionCard(game.getActionDeck());
+
+            Stage actionCardStage = new Stage();
+            actionCardStage.initModality(Modality.APPLICATION_MODAL);
+
+            FXMLLoader actionCardLoader = new FXMLLoader(getClass().getResource("/view/ActionCard.fxml"));
+            DrawnActionController drawnActionController = new DrawnActionController(tempcard);
+            actionCardLoader.setController(drawnActionController);
+
+            try{
+                actionCardStage.setScene(new Scene(actionCardLoader.load()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            actionCardStage.showAndWait();
             //Displays drawn action card
             if(tempcard.getName().equals("Collect From Bank"))
                 ((CollectFromBank) tempcard).action(game.getCurrentPlayer());
@@ -265,7 +287,6 @@ public class GameController implements Initializable {
             else if(tempcard.getName().equals("Pay To All"))
                 ((PayToAll) tempcard).action(game.getCurrentPlayer(), game.getOtherPlayers());
 
-            //ACTION CARDS THAT NEEDS TO CHOOSE PLAYER
             else if(tempcard.getName().equals("Collect From Player") || tempcard.getName().equals("Pay To Player")) {
                 System.out.println(tempcard.getName());
                 System.out.println(game.getCurrentPlayer().getName() + ": " + game.getCurrentPlayer().getCash());
@@ -296,12 +317,26 @@ public class GameController implements Initializable {
 
             }
 
-            System.out.println(tempcard.getName() + " <<<<<<<<<<<<, ACTION CARD");
 
         } else if(space.getColor().equals(Color.BLUE)) {
             BlueCard tempcard;
 
             tempcard = ((BlueSpace) space).takeBlueCard(game.getBlueDeck());
+
+            Stage blueCardStage = new Stage();
+            blueCardStage.initModality(Modality.APPLICATION_MODAL);
+
+            FXMLLoader blueCardLoader = new FXMLLoader(getClass().getResource("/view/BlueCard.fxml"));
+            DrawnBlueController drawnBlueController = new DrawnBlueController(tempcard);
+            blueCardLoader.setController(drawnBlueController);
+
+            try{
+                blueCardStage.setScene(new Scene(blueCardLoader.load()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            blueCardStage.showAndWait();
+
             tempcard.blueCardCondition(game.getCurrentPlayer(), game.getOtherPlayers(), tempcard.getName());
             if(tempcard.getName().equals("Lawsuit"))
                 ((Lawsuit) tempcard).action(game.getCurrentPlayer());
