@@ -3,8 +3,8 @@ package model;
 public class CareerCard extends Card {
     private String type = "Career";
     private boolean isDegreeRequired;
-    int maxRaise;
-    int raise;
+    protected int maxRaise;
+    protected int raise;
 
     public CareerCard(String name, int maxRaise, boolean isDegreeRequired) {
         super(name);

@@ -2,9 +2,9 @@ package model;
 
 public class ActionCard extends Card {
 
-    String type = "Action";
-    int amount;
-    String name;
+    protected String type = "Action";
+    protected int amount;
+    protected String name;
 
     public ActionCard(String name) {
         super(name);

@@ -2,9 +2,9 @@ package model;
 
 public class BlueCard extends Card {
 
-    String type = "Blue";
-    int amount;
-    String description;
+    protected String type = "Blue";
+    protected int amount;
+    protected String description;
 
     public BlueCard(String name) {
         super(name);

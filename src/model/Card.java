@@ -1,9 +1,9 @@
 package model;
 
 public class Card {
-    String type;
-    String description;
-    String name;
+    protected String type;
+    protected String description;
+    protected String name;
 
     public Card(String name) {
         this.name = name;
