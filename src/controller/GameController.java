@@ -135,7 +135,6 @@ public class GameController implements Initializable {
         }
         Random random = new Random();
         int dice = random.nextInt(10) + 1;
-        //System.out.println(game.getCurrentPlayer().getName() + " rolled " + dice);
 
         int diceLeft = 0;
         boolean isNextPath = false;
@@ -256,8 +255,6 @@ public class GameController implements Initializable {
 
     private void handleSpace(Space space) {
 
-        System.out.println(space.getType());
-
         if(space.getColor().equals(Color.ORANGE)) {
             ActionCard tempcard;
 
@@ -312,10 +309,6 @@ public class GameController implements Initializable {
                     ((CollectFromPlayer) tempcard).action(chosenPlayer, game.getCurrentPlayer());
                 else if(tempcard.getName().equals("Pay To Player"))
                  ((PayThePlayer) tempcard).action(game.getCurrentPlayer(), chosenPlayer);
-
-                System.out.println(game.getCurrentPlayer().getName() + ": " + game.getCurrentPlayer().getCash());
-                System.out.println(game.getOtherPlayers()[0].getName() + ": " + game.getOtherPlayers()[0].getCash());
-
             }
 
 
@@ -355,17 +348,27 @@ public class GameController implements Initializable {
             else if(tempcard.getName().equals("F1 Race"))
                 ((F1Race) tempcard).action(game.getCurrentPlayer());
 
-            System.out.println(tempcard.getName() + "<<<<<<<<<<<<, BLUE CARD");
-
         } else if(space.getColor().equals(Color.GREEN)) {
+
+            Stage greenStage = new Stage();
+            greenStage.initStyle(StageStyle.UNDECORATED);
+            greenStage.initModality(Modality.APPLICATION_MODAL);
+
+            FXMLLoader greenCardLoader = new FXMLLoader(getClass().getResource("/view/GreenCard.fxml"));
+            GreenCardController greenCardController = new GreenCardController(space.getType(), game.getCurrentPlayer().getSalary().getSalary());
+            greenCardLoader.setController(greenCardController);
+
+            try{
+                greenStage.setScene(new Scene(greenCardLoader.load()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            greenStage.showAndWait();
 
             if(space.getType().equals("Pay Day"))
                 ((PayDay) space).giveSalary(game.getCurrentPlayer());
             else if(space.getType().equals("Pay Raise"))
                 ((PayRaise) space).raiseSalary(game.getCurrentPlayer());
-
-            System.out.println(game.getCurrentPlayer().getPlayerSalary() + " <<<<<<<<<<<<, SALARY");
-            System.out.println(game.getCurrentPlayer().getRaiseCounter() + " <<<<<<<<<<<<, PAY RAISE");
 
         } else if(space.getColor().equals(Color.MAGENTA)) {
 
@@ -401,10 +404,6 @@ public class GameController implements Initializable {
 
                 careerChoiceStage.showAndWait();
             }
-            //else if(space.getType().equals("Job Search"))
-                //((JobSearchSpace) game.getCurrentPlayer())
-                // show 1 career card then ask user to keep or not
-                // show 1 salary card then ask user to keep or not
             else if(space.getType().equals("Buy A House")) {
              Stage chooseHouseStage = new Stage();
             chooseHouseStage.initStyle(StageStyle.UNDECORATED);

@@ -24,7 +24,7 @@
                   <Image url="@../img/careerimg.png" />
                </image>
             </ImageView>
-            <Button layoutX="130.0" layoutY="242.0" mnemonicParsing="false" onAction="#onClickEnter" prefHeight="25.0" prefWidth="114.0" text="Enter" />
+            <Button fx:id="enterButton" layoutX="130.0" layoutY="242.0" mnemonicParsing="false" onAction="#onClickEnter" prefHeight="25.0" prefWidth="114.0" text="Enter" />
          </children>
       </Pane>
    </children>

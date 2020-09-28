@@ -6,14 +6,19 @@
 
 <AnchorPane prefHeight="328.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Pane layoutX="10.0" layoutY="7.0" prefHeight="313.0" prefWidth="206.0" style="-fx-background-color: #5499C7;">
+        <AnchorPane layoutX="10.0" layoutY="7.0" prefHeight="313.0" prefWidth="206.0" style="-fx-background-color: #5499C7;">
             <children>
                 <Button fx:id="exitButton" layoutX="76.0" layoutY="281.0" mnemonicParsing="false" onAction="#onExit" prefHeight="25.0" prefWidth="54.0" text="Exit" />
-                <Label fx:id="bcNameLabel" layoutX="55.0" layoutY="106.0" text="CARDNAME" textAlignment="CENTER">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+               <children>
+                      <Label fx:id="bcNameLabel" text="CARDNAME" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
             </children>
-        </Pane>
+        </AnchorPane>
     </children>
 </AnchorPane>

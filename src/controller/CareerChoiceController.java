@@ -42,14 +42,12 @@ public class CareerChoiceController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<String> careerChoices = new ArrayList<>();
         ArrayList<String> salaryChoices = new ArrayList<>();
-        System.out.println(player.getName() + ": " + player.hasCollegeDegree());
-        if(type.equals("College Career Choice") || player.hasCollegeDegree()) {
+        if (type.equals("College Career Choice") || player.hasCollegeDegree()) {
 
             careerCard1 = (CareerCard) careerDeck.drawCard();
             careerCard2 = (CareerCard) careerDeck.drawCard();
 
-        }
-        else{
+        } else {
             careerCard1 = (CareerCard) careerDeck.drawDegreeCard();
             careerCard2 = (CareerCard) careerDeck.drawDegreeCard();
         }
@@ -61,8 +59,13 @@ public class CareerChoiceController implements Initializable {
         salaryChoices.add("$" + salaryCard1.getSalary() + " - $" + salaryCard1.getTaxDue());
         salaryChoices.add("$" + salaryCard2.getSalary() + " - $" + salaryCard2.getTaxDue());
         salaryCombo.getItems().addAll(salaryChoices);
-    }
 
+
+            if (careerCombo.getValue() == null && salaryCombo.getValue() == null)
+                enterButton.setDisable(true);
+            else
+                enterButton.setDisable(false);
+    }
     @FXML
     public void onClickEnter(ActionEvent ae) {
         if(careerCombo.getSelectionModel().getSelectedIndex() == 0) {

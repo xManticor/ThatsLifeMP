@@ -33,15 +33,12 @@ public class Deck {
   public Card drawDegreeCard(){
     Card tempcard;
     for(int i = 0; i < cards.size(); i++) {
-      System.out.println(!((CareerCard) cards.get(i)).isDegreeRequired() + "<<<<<<<<<<<<<<<<<" + cards.get(i).getName());
       if(!((CareerCard) cards.get(i)).isDegreeRequired()) {
-        System.out.println("GOES IN <<<<<<<<<");
         tempcard = cards.get(i); // Should not go here
          cards.remove(i);
         return tempcard;
       }
     }
-    System.out.println("WHYYYYYYYYY");
     return cards.get(0);
   }
 
