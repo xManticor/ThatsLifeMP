@@ -135,7 +135,7 @@ public class GameController implements Initializable {
         }
         Random random = new Random();
         int dice = random.nextInt(10) + 1;
-        System.out.println(game.getCurrentPlayer().getName() + " rolled " + dice);
+        //System.out.println(game.getCurrentPlayer().getName() + " rolled " + dice);
 
         int diceLeft = 0;
         boolean isNextPath = false;
@@ -264,6 +264,7 @@ public class GameController implements Initializable {
             tempcard = ((OrangeSpace) space).takeActionCard(game.getActionDeck());
 
             Stage actionCardStage = new Stage();
+            actionCardStage.initStyle(StageStyle.UNDECORATED);
             actionCardStage.initModality(Modality.APPLICATION_MODAL);
 
             FXMLLoader actionCardLoader = new FXMLLoader(getClass().getResource("/view/ActionCard.fxml"));
@@ -324,6 +325,7 @@ public class GameController implements Initializable {
             tempcard = ((BlueSpace) space).takeBlueCard(game.getBlueDeck());
 
             Stage blueCardStage = new Stage();
+            blueCardStage.initStyle(StageStyle.UNDECORATED);
             blueCardStage.initModality(Modality.APPLICATION_MODAL);
 
             FXMLLoader blueCardLoader = new FXMLLoader(getClass().getResource("/view/BlueCard.fxml"));

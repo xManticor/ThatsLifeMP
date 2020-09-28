@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="363.0" prefWidth="545.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameResultController">
+<AnchorPane prefHeight="363.0" prefWidth="545.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="onExit" layoutX="20.0" layoutY="16.0" prefHeight="330.0" prefWidth="503.0" style="-fx-background-color: #ABEBC6;">
          <children>
-            <Button fx:id="exitButton" layoutX="445.0" layoutY="300.0" mnemonicParsing="false" onAction="#onExit" prefHeight="25.0" prefWidth="52.0" text="EXIT" />
             <Label layoutX="20.0" layoutY="190.0" prefHeight="26.0" prefWidth="68.0" text="WINNER!" textFill="RED" underline="true">
                <font>
                   <Font name="3ds Regular" size="13.0" />
@@ -20,7 +18,7 @@
                   <Font name="Arial" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="cash1st" layoutX="375.0" layoutY="191.0" prefHeight="27.0" prefWidth="74.0" text="CASH">
+            <Label fx:id="cash1st" layoutX="267.0" layoutY="191.0" prefHeight="27.0" prefWidth="182.0" text="CASH">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
@@ -30,11 +28,7 @@
                   <Font name="3ds Regular" size="44.0" />
                </font>
             </Label>
-            <ImageView fx:id="exitButton" fitHeight="55.0" fitWidth="74.0" layoutX="85.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/crown.png" />
-               </image>
-            </ImageView>
+
          </children></Pane>
    </children>
 </AnchorPane>

@@ -23,6 +23,9 @@ public class GameResultController implements Initializable {
     @FXML
     private Label place1st, cash1st;
 
+    @FXML
+    private Button exitButton;
+
     private Player[] retiredPlayers;
 
     private Player winner;
@@ -46,7 +49,9 @@ public class GameResultController implements Initializable {
         cash1st.setText("$ " + winner.getCash());
     }
 
-
+   // public void onExit(javafx.event.ActionEvent ae) {
+       // ((Stage) (((Node) ae.getSource()).getScene().getWindow())).close();
+   // }
 }
 
 
