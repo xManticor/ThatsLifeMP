@@ -1,20 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameResultController">
+<AnchorPane prefHeight="402.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GameResult">
    <children>
-      <Pane layoutX="11.0" layoutY="11.0" prefHeight="377.0" prefWidth="577.0" style="-fx-background-color: #ABEBC6;">
+      <Pane fx:id="onExit" layoutX="11.0" layoutY="10.0" prefHeight="382.0" prefWidth="579.0" style="-fx-background-color: #ABEBC6;">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="WINNER">
+            <Button layoutX="513.0" layoutY="344.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="EXIT" />
+            <Label layoutX="24.0" layoutY="126.0" prefHeight="26.0" prefWidth="91.0" rotate="-19.3" text="WINNER!" textFill="RED" underline="true">
                <font>
-                  <Font name="3ds Regular" size="24.0" />
+                  <Font name="3ds Regular" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="56.0" text="Label" />
-         </children>
-      </Pane>
+            <Label fx:id="place1st" layoutX="78.0" layoutY="146.0" text="1. PLAYER">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="cash1st" layoutX="413.0" layoutY="146.0" text="CASH">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+            <Line endX="359.20001220703125" layoutX="170.0" layoutY="190.0" startX="-100.0" />
+            <Label fx:id="place2nd" layoutX="106.0" layoutY="218.0" text="2. PLAYER">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="cash2nd" layoutX="413.0" layoutY="218.0" text="CASH">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+            <Line endX="359.20001220703125" layoutX="170.0" layoutY="267.0" startX="-100.0" />
+            <Label fx:id="place3rd" layoutX="138.0" layoutY="294.0" text="3. PLAYER">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="cash3rd" layoutX="413.0" layoutY="294.0" text="CASH">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="95.0" layoutY="24.0" text="POST GAME RESULTS" underline="true">
+               <font>
+                  <Font name="3ds Regular" size="39.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="exitButton" fitHeight="30.0" fitWidth="30.0" layoutX="50.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/crown.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
    </children>
 </AnchorPane>
