@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane prefHeight="328.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Pane layoutX="10.0" layoutY="7.0" prefHeight="313.0" prefWidth="206.0" style="-fx-background-color: #52BE80;">
+            <children>
+                <Button fx:id="exitButton" layoutX="76.0" layoutY="281.0" mnemonicParsing="false" onAction="#onExit" prefHeight="25.0" prefWidth="54.0" text="OK" />
+                <Label fx:id="acNameLabel" layoutX="55.0" layoutY="75.0" text="CARDNAME" textAlignment="CENTER">
+                    <font>
+                        <Font size="18.0" />
+                    </font></Label>
+                <Label fx:id="acAmountLabel" layoutX="69.0" layoutY="144.0" text="AMOUNT" textAlignment="CENTER">
+                    <font>
+                        <Font size="16.0" />
+                    </font></Label>
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>
