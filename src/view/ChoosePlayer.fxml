@@ -9,7 +9,7 @@
    <children>
       <Pane layoutX="9.0" layoutY="10.0" prefHeight="281.0" prefWidth="362.0" style="-fx-background-color: #ABEBC6;">
          <children>
-            <Button fx:id="enterButton" layoutX="122.0" layoutY="249.0" mnemonicParsing="false" onAction="#onEnter" prefHeight="25.0" prefWidth="118.0" text="ENTER">
+            <Button fx:id="enterButton" disable="true" layoutX="122.0" layoutY="249.0" mnemonicParsing="false" onAction="#onEnter" prefHeight="25.0" prefWidth="118.0" text="ENTER">
                <font>
                   <Font name="3ds Regular" size="12.0" />
                </font></Button>

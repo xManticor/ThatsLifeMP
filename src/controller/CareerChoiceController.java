@@ -61,10 +61,16 @@ public class CareerChoiceController implements Initializable {
         salaryCombo.getItems().addAll(salaryChoices);
 
 
-            if (careerCombo.getValue() == null && salaryCombo.getValue() == null)
+        careerCombo.setOnAction(e -> {
+            if(careerCombo.getValue() == null && salaryCombo.getValue() == null)
+                enterButton.setDisable(true);
+        });
+        salaryCombo.setOnAction(e -> {
+            if (salaryCombo.getValue() == null && careerCombo.getValue() == null)
                 enterButton.setDisable(true);
             else
                 enterButton.setDisable(false);
+        });
     }
     @FXML
     public void onClickEnter(ActionEvent ae) {

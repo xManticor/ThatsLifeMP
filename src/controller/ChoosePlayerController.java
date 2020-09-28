@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
-import model.Game;
 import model.Player;
 
 import java.net.URL;
@@ -41,8 +40,10 @@ public class ChoosePlayerController implements Initializable {
         comboBox.getItems().addAll(playerchoices);
 
         comboBox.setOnAction(e -> {
-            if(comboBox.getValue() == null) enterButton.setDisable(true);
-            else enterButton.setDisable(false);
+            if(comboBox.getValue() == null)
+                enterButton.setDisable(true);
+            else
+                enterButton.setDisable(false);
         });
         }
 

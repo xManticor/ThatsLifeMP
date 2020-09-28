@@ -13,8 +13,8 @@
                <font>
                   <Font name="3ds Regular" size="12.0" />
                </font></Label>
-            <ComboBox fx:id="careerCombo" layoutX="3.0" layoutY="204.0" prefWidth="150.0" promptText="Choose a Career" />
-            <ComboBox fx:id="salaryCombo" layoutX="200.0" layoutY="204.0" prefWidth="150.0" promptText="Choose a Salary" />
+            <ComboBox fx:id="careerCombo" layoutX="3.0" layoutY="204.0" prefWidth="150.0" />
+            <ComboBox fx:id="salaryCombo" layoutX="200.0" layoutY="204.0" prefWidth="150.0" />
             <Label layoutX="237.0" layoutY="183.0" prefHeight="17.0" prefWidth="90.0" text="SALARY CHOICE">
                <font>
                   <Font name="3ds Regular" size="12.0" />
@@ -24,7 +24,7 @@
                   <Image url="@../img/careerimg.png" />
                </image>
             </ImageView>
-            <Button fx:id="enterButton" layoutX="130.0" layoutY="242.0" mnemonicParsing="false" onAction="#onClickEnter" prefHeight="25.0" prefWidth="114.0" text="Enter" />
+            <Button fx:id="enterButton" disable="true" layoutX="130.0" layoutY="242.0" mnemonicParsing="false" onAction="#onClickEnter" prefHeight="25.0" prefWidth="114.0" text="Enter" />
          </children>
       </Pane>
    </children>
