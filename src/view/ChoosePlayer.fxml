@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="9.0" layoutY="10.0" prefHeight="281.0" prefWidth="362.0" style="-fx-background-color: #ABEBC6;">
+         <children>
+            <Button fx:id="enterButton" layoutX="122.0" layoutY="249.0" mnemonicParsing="false" onAction="#onEnter" prefHeight="25.0" prefWidth="118.0" text="ENTER">
+               <font>
+                  <Font name="3ds Regular" size="12.0" />
+               </font></Button>
+            <ImageView fitHeight="198.0" fitWidth="295.0" layoutX="34.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/chooseplayer.jpg" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="comboBox" layoutX="106.0" layoutY="211.0" prefWidth="150.0" promptText="CHOOSE PLAYER" />
+         </children></Pane>
+   </children>
+</AnchorPane>
