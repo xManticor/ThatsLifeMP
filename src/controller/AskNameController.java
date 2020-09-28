@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+/**
+ * AskNameController class controller for GUI
+ */
 public class AskNameController implements Initializable {
     @FXML
     private TextField nameInput;
@@ -20,6 +24,11 @@ public class AskNameController implements Initializable {
 
     private String name;
 
+    /**
+     * Overrides initialize with programmer's intent to disable enterButton if no text has been entered
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         nameInput.textProperty().addListener(e -> {
@@ -28,12 +37,20 @@ public class AskNameController implements Initializable {
         });
     }
 
+    /**
+     * Takes name and closes the window when enter is clicked
+     * @param ae
+     */
     @FXML
     public void onClickEnter(ActionEvent ae) {
         name = nameInput.getText();
         ((Stage) (((Node) ae.getSource()).getScene().getWindow())).close();
     }
 
+    /**
+     * Gets the name input
+     * @return name
+     */
     public String getName() {
         return name;
     }

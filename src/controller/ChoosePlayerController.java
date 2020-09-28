@@ -13,6 +13,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * ChoosePlayerController class controller for GUI
+ */
 public class ChoosePlayerController implements Initializable {
 
     @FXML
@@ -24,10 +27,20 @@ public class ChoosePlayerController implements Initializable {
     private Player[] otherPlayers;
     private Player player;
 
+    /**
+     * ChoosePlayerController constructor that collects players besides the current player
+     * @param otherPlayers
+     */
     public ChoosePlayerController(Player[] otherPlayers) {
         this.otherPlayers = otherPlayers;
     }
 
+    /**
+     * Shows the players in a combo box and one has to be selected, besides the current player
+     * Also disables enter button until a choice has been made
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<String> playerchoices = new ArrayList<>();
@@ -47,6 +60,10 @@ public class ChoosePlayerController implements Initializable {
         });
         }
 
+    /**
+     * Gets the player selected from the combo box when enter is clicked
+      * @param ae
+     */
     public void onEnter(ActionEvent ae) {
 
         player = otherPlayers[comboBox.getSelectionModel().getSelectedIndex()];
@@ -54,6 +71,10 @@ public class ChoosePlayerController implements Initializable {
         ((Stage) ((Node) ae.getSource()).getScene().getWindow()).close();
     }
 
+    /**
+     * Gets the selected player
+     * @return player
+     */
     public Player getPlayer() {
         return player;
     }

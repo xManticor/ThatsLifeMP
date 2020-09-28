@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 abstract public class MagentaSpace extends Space {
     /**
      * MagentaSpace constructor. This defines the type and color of MagentaSpace
-     * @param type
+     * @param type name of the space
      */
     public MagentaSpace(String type) {
         super(type, Color.MAGENTA);

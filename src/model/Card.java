@@ -5,7 +5,6 @@ package model;
  */
 public class Card {
     protected String type;
-    protected String description;
     protected String name;
 
     /**

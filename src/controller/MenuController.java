@@ -9,12 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
-import model.Game;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * MenuController class controller for GUI
+ */
 public class MenuController implements Initializable {
     @FXML
     private ComboBox comboBox;
@@ -22,6 +24,12 @@ public class MenuController implements Initializable {
     @FXML
     private Button enterButton;
 
+    /**
+     * Adds 2 and 3 as choices in number of players
+     * Disables enter button until a choiec has been clicked
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         enterButton.setDisable(true);
@@ -34,6 +42,10 @@ public class MenuController implements Initializable {
         });
     }
 
+    /**
+     * Opens the game proper and starts
+     * @param ae
+     */
     @FXML
     public void onEnter(ActionEvent ae) {
         Stage stage = (Stage) (((Node) ae.getSource()).getScene().getWindow());
@@ -53,6 +65,10 @@ public class MenuController implements Initializable {
         gameController.refreshScreen();
     }
 
+    /**
+     * Closes the window when exit button has been clicked
+     * @param ae
+     */
     @FXML
     public void onExit(ActionEvent ae) {
         ((Stage) (((Node) ae.getSource()).getScene().getWindow())).close();

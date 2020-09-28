@@ -6,14 +6,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import model.Path;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+/**
+ * AskPathController class controller for GUI
+ */
 public class AskPathController implements Initializable {
     @FXML
     private Button enterButton;
@@ -23,6 +24,11 @@ public class AskPathController implements Initializable {
 
     private Path path, path1, path2;
 
+    /**
+     * Overrides initialize with programmer's intent to disable enterButton if no text has been entered
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         pathCombo.valueProperty().addListener(e -> {
@@ -31,6 +37,10 @@ public class AskPathController implements Initializable {
         });
     }
 
+    /**
+     * Copies path1 or path 2 into path when enter is clicked
+     * @param ae
+     */
     public void onClickEnter(ActionEvent ae) {
         if(pathCombo.getSelectionModel().getSelectedIndex() == 0) {
             path = path1;
@@ -40,6 +50,11 @@ public class AskPathController implements Initializable {
         ((Stage) (((Node) ae.getSource()).getScene().getWindow())).close();
     }
 
+    /**
+     * Sets and adds the path to be taken
+     * @param path1 first path
+     * @param path2 second path
+     */
     public void setPaths(Path path1, Path path2) {
         this.path1 = path1;
         this.path2 = path2;
@@ -47,6 +62,10 @@ public class AskPathController implements Initializable {
         pathCombo.getItems().add(path2.getName());
     }
 
+    /**
+     * Gets path
+     * @return path
+     */
     public Path getPath() {
         return path;
     }

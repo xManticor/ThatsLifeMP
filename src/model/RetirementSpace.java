@@ -2,12 +2,24 @@ package model;
 
 import javafx.scene.paint.Color;
 
+/**
+ * RetirementSpace class that inherits the Space parent class
+ */
 public class RetirementSpace extends Space {
 
+    /**
+     * RetirementSpace constructor that takes in a String to be passed onto its super class
+     * A magenta color is also passed as a color type of the Space
+     * @param type which is the name of the space
+     */
     public RetirementSpace(String type) {
         super(type, Color.MAGENTA);
     }
 
+    /**
+     * Retires the player passed
+     * @param player player going to retire
+     */
     public void retirePlayer(Player player) {
         addPlayer(player);
         //Retirement pay
@@ -28,7 +40,5 @@ public class RetirementSpace extends Space {
 
         //Loans with interest
         player.payLoan(player.getLoan()/25000);
-
-
     }
 }

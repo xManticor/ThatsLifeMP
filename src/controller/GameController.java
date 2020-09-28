@@ -21,7 +21,9 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-
+/**
+ * GameController class controller for GUI
+ */
 public class GameController implements Initializable {
     private int numberOfPlayer;
 
@@ -38,11 +40,21 @@ public class GameController implements Initializable {
 
     private Game game;
 
+    /**
+     * GameController constructor that takes in the stage and the number of players
+     * @param stage
+     * @param numberOfPlayer
+     */
     public GameController(Stage stage, int numberOfPlayer) {
         this.stage = stage;
         this.numberOfPlayer = numberOfPlayer;
     }
 
+    /**
+     * Sets the game into play
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         game = new Game(numberOfPlayer);
@@ -112,6 +124,11 @@ public class GameController implements Initializable {
         else payLoanButton.setDisable(true);
     }
 
+    /**
+     * Moves the player when move button is clicked and checks what's happening to the player
+     * @param ae
+     * @throws IOException
+     */
     @FXML
     public void onClickMove(ActionEvent ae) throws IOException {
         if(moveButton.getText().equals("End Game")) {
@@ -162,7 +179,6 @@ public class GameController implements Initializable {
         }
 
         if(isNextPath) {
-            System.out.println("NEXT PATH ACTIVATED!!! " + game.getCurrentPlayer().getPath().getLastSpace().getConnector());
             if(game.getCurrentPlayer().getPath().getLastSpace().getConnector() != null) {
                 Path nextPath = game.getCurrentPlayer().getPath().getLastSpace().getConnector();
                 game.getCurrentPlayer().setPath(nextPath);
@@ -229,7 +245,6 @@ public class GameController implements Initializable {
                 game.retirePlayer(game.getCurrentPlayer());
             }
         } else {
-            System.out.println("HANDLING SPACE");
             handleSpace(space);
         }
 
@@ -253,6 +268,10 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Handles what's going to happen when a player has landed on a specific space color
+     * @param space
+     */
     private void handleSpace(Space space) {
 
         if(space.getColor().equals(Color.ORANGE)) {
@@ -479,6 +498,10 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Pay loan function for the player
+     * @param ae
+     */
     @FXML
     public void onClickPayLoan(ActionEvent ae) {
         Stage stage = new Stage();
@@ -502,6 +525,9 @@ public class GameController implements Initializable {
         refreshScreen();
     }
 
+    /**
+     * Updates the button of the pay loan
+     */
     private void updatePayLoanButton() {
         if(game.getCurrentPlayer().getLoan() > 0) {
             payLoanButton.setDisable(false);
@@ -510,6 +536,9 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Refreshes and updates the screen of the game
+     */
     public void refreshScreen() {
         // refresh board
         drawBoard();
@@ -524,6 +553,9 @@ public class GameController implements Initializable {
         else pathLabel.setText("PATH:" + game.getCurrentPlayer().getPath());
     }
 
+    /**
+     * Draws and makes the board of the game
+     */
     public void drawBoard() {
         GraphicsContext gc = board.getGraphicsContext2D();
         gc.clearRect(0, 0, board.getWidth(), board.getHeight());
@@ -584,6 +616,13 @@ public class GameController implements Initializable {
         x -= 7 * 50;
     }
 
+    /**
+     * Draws CollegePath1 into the board
+     * @param collegePath1
+     * @param x
+     * @param y
+     * @param gc
+     */
     private void drawCollegePath1(Path collegePath1, double x, double y, GraphicsContext gc) {
         for(int i = 0; i < 2; i++) {
             drawSpace(collegePath1.getSpaces()[i], x, y, gc);
@@ -606,6 +645,13 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Draws CareerPath1 into the board
+     * @param careerPath1
+     * @param x
+     * @param y
+     * @param gc
+     */
     private void drawCareerPath1(Path careerPath1, double x, double y, GraphicsContext gc) {
         for(int i = 0; i < 3; i++) {
             drawSpace(careerPath1.getSpaces()[i], x, y, gc);
@@ -616,6 +662,13 @@ public class GameController implements Initializable {
         gc.fillText("Career Path 1", x - 120, y - 10);
     }
 
+    /**
+     * Draws CareerPath2 into the board
+     * @param careerPath2
+     * @param x
+     * @param y
+     * @param gc
+     */
     private void drawCareerPath2(Path careerPath2, double x, double y, GraphicsContext gc) {
         for(int i = 0; i < 5; i++) {
             drawSpace(careerPath2.getSpaces()[i], x, y, gc);
@@ -633,6 +686,13 @@ public class GameController implements Initializable {
         gc.fillText("Career Path 2", x + 120, y - 10);
     }
 
+    /**
+     * Draws ChangeCareerPath1 into the board
+     * @param changeCareerPath1
+     * @param x
+     * @param y
+     * @param gc
+     */
     private void drawChangeCareerPath1(Path changeCareerPath1, double x, double y, GraphicsContext gc)  {
         for(int i = 0; i < 4; i++) {
             drawSpace(changeCareerPath1.getSpaces()[i], x, y, gc);
@@ -655,6 +715,13 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Draws FamilyPath1 into the board
+     * @param familyPath1
+     * @param x
+     * @param y
+     * @param gc
+     */
     private void drawFamilyPath1(Path familyPath1, double x, double y, GraphicsContext gc) {
         for(int i = 0; i < 6; i++) {
             drawSpace(familyPath1.getSpaces()[i], x, y, gc);
@@ -672,6 +739,13 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Draws CareerPath3 into the board
+     * @param careerPath3
+     * @param x
+     * @param y
+     * @param gc
+     */
     private void drawCareerPath3(Path careerPath3, double x, double y, GraphicsContext gc) {
         for(int i = 0; i < 9; i++) {
             drawSpace(careerPath3.getSpaces()[i], x, y, gc);
@@ -694,6 +768,13 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Draws ChangeCareerPath2 into the board
+     * @param changeCareerPath2
+     * @param x
+     * @param y
+     * @param gc
+     */
     private void drawChangeCareerPath2(Path changeCareerPath2, double x, double y, GraphicsContext gc) {
         gc.setFill(Color.BLACK);
         gc.fillText("Change Career Path 2", x - 70, y + 60);
@@ -711,6 +792,13 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Draws FamilyPath2 into the board
+     * @param familyPath2
+     * @param x
+     * @param y
+     * @param gc
+     */
     private void drawFamilyPath2(Path familyPath2, double x, double y, GraphicsContext gc) {
         gc.setFill(Color.BLACK);
         gc.fillText("Start a Family Path 2", x + 20, y + 60);
@@ -735,6 +823,13 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Draws CareerPath4 into the board
+     * @param careerPath4
+     * @param x
+     * @param y
+     * @param gc
+     */
     private void drawCareerPath4(Path careerPath4, double x, double y, GraphicsContext gc) {
         for(int i = 0; i < careerPath4.getNSpaces(); i++) {
             drawSpace(careerPath4.getSpaces()[i], x, y, gc);
@@ -742,6 +837,13 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Draws a single space
+     * @param space
+     * @param x
+     * @param y
+     * @param gc
+     */
     private void drawSpace(Space space, double x, double y, GraphicsContext gc) {
         gc.setFill(space.getColor());
         gc.fillRect(x, y, 50, 50);

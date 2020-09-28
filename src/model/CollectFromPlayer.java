@@ -33,7 +33,7 @@ public class CollectFromPlayer extends ActionCard implements PlayerToPlayer {
      * @param player the player to be chosen.
      * @return the player chosen.
      */
-    public Player choosePlayer(Player player) {
+    public Player choosePlayer(Player player, Player[] otherPlayers) {
         return player;
     }
 }

@@ -25,7 +25,7 @@ public class Game {
     /**
      * Game constructor, this is where player, retired players arrays, cards and paths are created.
      *
-     * @param numPlayers
+     * @param numPlayers number of players
      */
     public Game(int numPlayers) {
         this.players = new ArrayList<>();
@@ -36,6 +36,7 @@ public class Game {
             players.add(new Player());
         }
 
+        //Generates all decks
         generateActionDeck();
         generateBlueDeck();
         generateCareerDeck();
@@ -329,6 +330,14 @@ public class Game {
     }
 
     /**
+     * This method sets the turn
+     * @param turn the turn
+     */
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+
+    /**
      * This method returns all the players in array
      * @return Player[]
      */
@@ -379,14 +388,6 @@ public class Game {
      */
     public int getTurn() {
         return turn;
-    }
-
-    /**
-     * This method sets the turn
-     * @param turn the turn
-     */
-    public void setTurn(int turn) {
-        this.turn = turn;
     }
 
     /**

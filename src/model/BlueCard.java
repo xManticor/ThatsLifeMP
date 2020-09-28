@@ -64,7 +64,7 @@ public class BlueCard extends Card {
      * This method runs in a loop to find the targeted player career.
      * 
      * @param otherplayers player list
-     * @param career
+     * @param career name of career
      * @return the player if same career is found, otherwise null.
      */
 

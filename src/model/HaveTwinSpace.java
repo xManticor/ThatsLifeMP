@@ -13,16 +13,16 @@ public class HaveTwinSpace extends MagentaSpace {
     }
     /**
      * This method adds a child to the player and the other players pays the player that had a child recently.
-     * @param player
-     * @param otherplayers
+     * @param player player to be added a child
+     * @param otherPlayers the otherPlayers to be paying to the current player
      */
-    public void addPlayerChild(Player player, Player[] otherplayers) {
+    public void addPlayerChild(Player player, Player[] otherPlayers) {
         if(player.isMarried()){
             player.addChild(2);
-            for(int i = 0; i < otherplayers.length; i++){
-                if(player.getName() != otherplayers[i].getName())
+            for(int i = 0; i < otherPlayers.length; i++){
+                if(player.getName() != otherPlayers[i].getName())
                     player.addCash(10000);
-                otherplayers[i].removeCash(10000);
+                otherPlayers[i].removeCash(10000);
             }
         }
     }

@@ -25,8 +25,8 @@ public class PayRaise extends GreenSpace {
 
     /**
      * This generates random number
-     * @param lb
-     * @param ub
+     * @param lb lowerbound of the range
+     * @param ub upperbound of the range
      * @return int
      */
     public int generateRandom(int lb, int ub) {

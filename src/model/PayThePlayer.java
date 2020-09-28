@@ -33,7 +33,7 @@ public class PayThePlayer extends ActionCard implements PlayerToPlayer {
      * @param player the player to be chosen
      * @return Player
      */
-    public Player choosePlayer(Player player) {
+    public Player choosePlayer(Player player, Player[] otherPlayers) {
         return player;
     }
 }

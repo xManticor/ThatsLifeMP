@@ -16,6 +16,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * CareerChoiceController class controller for GUI
+ */
 public class CareerChoiceController implements Initializable {
     @FXML
     private ComboBox careerCombo, salaryCombo;
@@ -29,6 +32,13 @@ public class CareerChoiceController implements Initializable {
     private CareerCard careerCard1, careerCard2;
     private SalaryCard salaryCard1, salaryCard2;
 
+    /**
+     * CareerChoiceController that takes the parameters and draws salary cards
+     * @param type
+     * @param player
+     * @param careerDeck
+     * @param salaryDeck
+     */
     public CareerChoiceController(String type, Player player, Deck careerDeck, Deck salaryDeck) {
         this.type = type; //
         this.player = player;
@@ -38,6 +48,12 @@ public class CareerChoiceController implements Initializable {
         salaryCard2 = (SalaryCard) salaryDeck.drawCard();
     }
 
+    /**
+     * Creates new ArrayLists for the drawn salary and career cards and set into combo boxes, and also disables
+     * enter button if no choices has been made
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<String> careerChoices = new ArrayList<>();
@@ -72,6 +88,11 @@ public class CareerChoiceController implements Initializable {
                 enterButton.setDisable(false);
         });
     }
+
+    /**
+     * Checks which card has been selected and returns the cards that has not been selected when enter has been clicked
+     * @param ae
+     */
     @FXML
     public void onClickEnter(ActionEvent ae) {
         if(careerCombo.getSelectionModel().getSelectedIndex() == 0) {

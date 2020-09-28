@@ -18,7 +18,7 @@ public class HouseCard extends Card {
 
     /**
      * A getter method, returns the value of the house card.
-     * @return
+     * @return value
      */
     public int getValue() {
         return this.value;

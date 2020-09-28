@@ -17,7 +17,7 @@ public class PayTheBank extends ActionCard {
      * This is the method under ActionCard class, wherein the action of the PayTheBank action card activates.
      * This also accepts an Object Player that is supposed to be the target by the action.
      * Moreover this method is inherited from the ActionCard class.
-     * @param target the player target.
+     * @param target the target player.
      */
     public void action(Player target) {
         while(target.getCash() < amount){

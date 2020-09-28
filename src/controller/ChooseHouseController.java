@@ -15,6 +15,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * ChooseHouseController class controller for GUI
+ */
 public class ChooseHouseController implements Initializable {
 
     @FXML
@@ -26,10 +29,19 @@ public class ChooseHouseController implements Initializable {
     private HouseCard houseCard;
     private Deck houseDeck;
 
+    /**
+     * ChooseHouseController constructor that takes in a HouseDeck
+     * @param houseDeck
+     */
     public ChooseHouseController(Deck houseDeck) {
         this.houseDeck = houseDeck;
     }
 
+    /**
+     * Puts the houses inside a combobox with its value and disables enter until a choice has been made
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<String> choices = new ArrayList<>();
@@ -49,12 +61,20 @@ public class ChooseHouseController implements Initializable {
         });
     }
 
+    /**
+     * Takes the houseCard that has been selected by the player and closes the window
+     * @param ae
+     */
     public void onEnter(ActionEvent ae) {
         houseCard = (HouseCard) houseDeck.getDeck().get(comboBox.getSelectionModel().getSelectedIndex());
 
         ((Stage) ((Node) ae.getSource()).getScene().getWindow()).close();
     }
 
+    /**
+     * gets and returns the houseCard
+     * @return houseCard
+     */
     public HouseCard getHouseCard() {
         return houseCard;
     }

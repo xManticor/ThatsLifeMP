@@ -6,7 +6,7 @@ package model;
 public class PayDay extends GreenSpace {
     /**
      * PayDay constructor this is where its' type is defined or created
-     * @param type
+     * @param type which is the name of the space
      */
     public PayDay(String type) {
         super(type);

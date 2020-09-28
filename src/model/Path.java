@@ -28,7 +28,7 @@ public class Path {
 
     /**
      * This gets the space
-     * @param index
+     * @param index the index indicated to get a specific space
      * @return Space
      */
     public Space getSpace(int index) {
@@ -45,7 +45,7 @@ public class Path {
 
     /**
      * This gets the number of spaces
-     * @return number of psaces
+     * @return number of spaces
      */
     public int getNSpaces() {
         return spaces.size();
@@ -53,7 +53,7 @@ public class Path {
 
     /**
      * This gets the name of the path
-     * @return String
+     * @return name
      */
     public String getName() {
         return name;

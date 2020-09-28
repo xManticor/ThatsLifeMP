@@ -16,7 +16,7 @@ public class GraduateSpace extends MagentaSpace {
 
     /**
      * This method simply changes the player's degree value to true.
-     * @param player player
+     * @param player player to be graduating
      */
     public void graduatePlayer(Player player){
         player.setCollegeDegree(true);

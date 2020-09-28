@@ -1,8 +1,6 @@
 package model;
 
 import javafx.scene.paint.Color;
-
-import java.awt.event.ActionEvent;
 /**
  * This orange space class, a class under space class.
  */
@@ -25,7 +23,7 @@ public class OrangeSpace extends Space {
 
     /**
      * This method takes an action card then returns it
-     * @param actionDeck the deck tobe drawn from.
+     * @param actionDeck the deck to be drawn from.
      * @return ActionCard
      */
     public ActionCard takeActionCard(Deck actionDeck) {

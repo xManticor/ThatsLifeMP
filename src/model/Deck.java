@@ -12,7 +12,7 @@ public class Deck {
 
   /**
    * The deck constructor. This sets the name and the arraylist of cards.
-   * @param name
+   * @param name name of the deck
    */
   public Deck(String name) {
     this.name = name;
