@@ -266,11 +266,35 @@ public class GameController implements Initializable {
                 ((PayToAll) tempcard).action(game.getCurrentPlayer(), game.getOtherPlayers());
 
             //ACTION CARDS THAT NEEDS TO CHOOSE PLAYER
-            /*else if(tempcard.getName().equals("Collect From Player"))
-                ((CollectFromPlayer) tempcard).action(game.getCurrentPlayer());
-            else if(tempcard.getName().equals("Pay To Player"))
-                ((PayThePlayer) tempcard).action(game.getCurrentPlayer());
-            */
+            else if(tempcard.getName().equals("Collect From Player") || tempcard.getName().equals("Pay To Player")) {
+                System.out.println(tempcard.getName());
+                System.out.println(game.getCurrentPlayer().getName() + ": " + game.getCurrentPlayer().getCash());
+                Stage choosePlayerStage = new Stage();
+                choosePlayerStage.initStyle(StageStyle.UNDECORATED);
+                choosePlayerStage.initModality(Modality.APPLICATION_MODAL);
+
+                FXMLLoader choosePlayerLoader = new FXMLLoader(getClass().getResource("/view/ChoosePlayer.fxml"));
+                ChoosePlayerController choosePlayerController = new ChoosePlayerController(game.getOtherPlayers());
+                choosePlayerLoader.setController(choosePlayerController);
+
+                try{
+                    choosePlayerStage.setScene(new Scene(choosePlayerLoader.load()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                choosePlayerStage.showAndWait();
+                Player chosenPlayer = choosePlayerController.getPlayer();
+
+                if(tempcard.getName().equals("Collect From Player"))
+                    ((CollectFromPlayer) tempcard).action(chosenPlayer, game.getCurrentPlayer());
+                else if(tempcard.getName().equals("Pay To Player"))
+                 ((PayThePlayer) tempcard).action(game.getCurrentPlayer(), chosenPlayer);
+
+                System.out.println(game.getCurrentPlayer().getName() + ": " + game.getCurrentPlayer().getCash());
+                System.out.println(game.getOtherPlayers()[0].getName() + ": " + game.getOtherPlayers()[0].getCash());
+
+            }
 
             System.out.println(tempcard.getName() + " <<<<<<<<<<<<, ACTION CARD");
 
@@ -338,8 +362,8 @@ public class GameController implements Initializable {
                 // show 1 career card then ask user to keep or not
                 // show 1 salary card then ask user to keep or not
             else if(space.getType().equals("Buy A House")) {
-                Stage chooseHouseStage = new Stage();
-                chooseHouseStage.initStyle(StageStyle.UNDECORATED);
+             Stage chooseHouseStage = new Stage();
+            chooseHouseStage.initStyle(StageStyle.UNDECORATED);
                 chooseHouseStage.initModality(Modality.APPLICATION_MODAL);
 
                 FXMLLoader chooseHouseLoader = new FXMLLoader(getClass().getResource("/view/ChooseHouse.fxml"));

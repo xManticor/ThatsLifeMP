@@ -22,20 +22,19 @@ public class ChoosePlayerController implements Initializable {
     @FXML
     private Button enterButton;
 
-    private Player[] players;
+    private Player[] otherPlayers;
     private Player player;
-    private Game game;
 
-    public ChoosePlayerController(Player[] players) {
-        this.players = players;
+    public ChoosePlayerController(Player[] otherPlayers) {
+        this.otherPlayers = otherPlayers;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<String> playerchoices = new ArrayList<>();
 
-        for(int i = 0; i < game.getOtherPlayers().length; i++) {
-            String playerchoice = game.getOtherPlayers()[i].getName();
+        for(Player player : otherPlayers) {
+            String playerchoice = player.getName();
                 playerchoices.add(playerchoice);
             }
 
@@ -49,9 +48,13 @@ public class ChoosePlayerController implements Initializable {
 
     public void onEnter(ActionEvent ae) {
 
-        player = game.getPlayers()[comboBox.getSelectionModel().getSelectedIndex()];
+        player = otherPlayers[comboBox.getSelectionModel().getSelectedIndex()];
 
         ((Stage) ((Node) ae.getSource()).getScene().getWindow()).close();
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
 }

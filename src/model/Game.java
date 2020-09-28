@@ -88,7 +88,7 @@ public class Game {
         for(int i = 0; i < 3; i++)
             careerPath3.addSpace(new OrangeSpace("Orange Space"));
         careerPath3.addSpace(new BlueSpace("Blue Space"));
-        careerPath3.addSpace(new JobSearchSpace("Job Search Space"));
+        careerPath3.addSpace(new PayDay("Pay Day"));
         careerPath3.addSpace(new OrangeSpace("Orange Space"));
         careerPath3.addSpace(new PayDay("Pay Day"));
         for(int i = 0; i < 3; i++)
@@ -208,24 +208,19 @@ public class Game {
         return familyPath;
     }
 
-    public void display2TopCareer(){
-        System.out.println(careerDeck.getDeck().get(0).getName() +","+ careerDeck.getDeck().get(0).getDescription());
-        System.out.println(careerDeck.getDeck().get(1).getName() +","+ careerDeck.getDeck().get(1).getDescription());
-    }
-
     public void generateActionDeck() {
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 20; i++) // 20
             actionDeck.addCard(new CollectFromBank("Collect From Bank", generateRandom(1000, 35000)));
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 20; i++) //20
             actionDeck.addCard(new PayTheBank("Pay The Bank", generateRandom(1000, 20000)));
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) // 3
             actionDeck.addCard(new CollectFromPlayer("Collect From Player", generateRandom(1000, 15000)));
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++) //2
             actionDeck.addCard(new PayThePlayer("Pay The Player", generateRandom(1000, 15000)));
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) //3
             actionDeck.addCard(new CollectFromAll("Collect From All", generateRandom(1000, 13500)));
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++) // 2
             actionDeck.addCard(new PayToAll("Pay To All", generateRandom(1000, 13500)));
 
         Collections.shuffle(actionDeck.getDeck());
